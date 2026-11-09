@@ -1,0 +1,2298 @@
+/* Vexon — full static site, converted 1-file to Next.js.
+   CSS copied verbatim from ts-spaces/why-choose-vexon/index.html
+   (<style> block); only asset URLs were re-rooted assets/ -> /.
+   Fonts come from app/layout.tsx (next/font). */
+:root {
+        --bg: #000000;
+        --ink: #eef6fb;
+        --muted: #8d9cae;
+        --teal: #14e0c8;
+        --cyan: #2fc7de;
+        --cyan-hi: #3fd8ee;
+        --card-line: rgba(126, 211, 220, 0.15);
+        --navy-0: #030b16;
+        --navy-1: #071426;
+        --grad: linear-gradient(92deg, #14e0c8, #22b8f0);
+        --line: rgba(120, 200, 235, 0.16);
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Manrope", system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      /* ---------- Section shell ---------- */
+      .why {
+        position: relative;
+        background: #000;
+        padding: clamp(50px, 6.5vw, 74px) 24px clamp(56px, 7vw, 86px);
+        border-top: 1px solid rgba(255, 255, 255, 0.055);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+        overflow: hidden;
+      }
+      .why-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 980px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      /* ---------- Heading ---------- */
+      .why h2 {
+        margin: 0;
+        font-family: "Orbitron", sans-serif;
+        font-weight: 700;
+        font-size: clamp(24px, 3.1vw, 33px);
+        letter-spacing: 0.01em;
+        line-height: 1.15;
+        color: var(--ink);
+      }
+      .why h2 .accent {
+        background: linear-gradient(92deg, var(--teal) 0%, #29b6ec 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+      .why .sub {
+        margin: 14px auto 0;
+        max-width: 560px;
+        font-size: clamp(12.5px, 1.3vw, 14px);
+        line-height: 1.6;
+        color: var(--muted);
+        font-weight: 500;
+      }
+
+      /* ---------- Cards ---------- */
+      .cards {
+        margin-top: clamp(30px, 4vw, 40px);
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        text-align: left;
+      }
+      .card {
+        --mx: 85%;
+        --my: -10%;
+        position: relative;
+        padding: 24px 20px 26px;
+        border-radius: 10px;
+        border: 1px solid var(--card-line);
+        background:
+          radial-gradient(420px 230px at var(--mx) var(--my), rgba(20, 224, 200, 0.13), rgba(20, 224, 200, 0) 62%),
+          linear-gradient(165deg, rgba(17, 54, 65, 0.66) 0%, rgba(6, 24, 32, 0.88) 58%, rgba(4, 16, 22, 0.94) 100%);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.055),
+          0 24px 44px rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                    border-color 0.45s ease,
+                    box-shadow 0.45s ease;
+        will-change: transform;
+      }
+      .card::before {
+        /* glossy sheen pinned to the top edge of the glass */
+        content: "";
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 46%;
+        border-radius: 10px 10px 0 0;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+        pointer-events: none;
+      }
+      .card:hover {
+        transform: translateY(-7px);
+        border-color: rgba(20, 224, 200, 0.42);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.07),
+          0 30px 54px rgba(0, 0, 0, 0.55),
+          0 0 34px rgba(20, 224, 200, 0.1);
+      }
+      .icon-disc {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(145deg, var(--cyan-hi) 0%, var(--cyan) 55%, #22b3cf 100%);
+        box-shadow:
+          0 0 26px rgba(47, 199, 222, 0.35),
+          inset 0 2px 5px rgba(255, 255, 255, 0.45),
+          inset 0 -3px 6px rgba(3, 60, 74, 0.35);
+      }
+      .icon-disc svg { display: block; width: 23px; height: 23px; }
+      .card h3 {
+        margin: 17px 0 0;
+        font-family: "Orbitron", sans-serif;
+        font-weight: 700;
+        font-size: clamp(13.5px, 1.15vw, 15px);
+        letter-spacing: 0.015em;
+        line-height: 1.3;
+        color: var(--ink);
+        white-space: nowrap;
+      }
+      .card p {
+        margin: 9px 0 0;
+        font-size: 12.5px;
+        line-height: 1.58;
+        color: #93a5b5;
+        font-weight: 500;
+      }
+
+      /* ---------- Divider between the cards and the Trusted strip ----------
+         A shadow-type groove divider, now slimmer and a touch softer:
+         a thin soft-shadow band with a gentle centre line — still clearly
+         readable as a divider, but lighter on the eye than the deep
+         groove it replaced. It spans the full width of the content
+         container — the same box the card row lives in — so both ends
+         line up exactly with the outer edges of the first and last cards.
+         The gap is doubled on both sides: cards -> divider and
+         divider -> Trusted strip are equal and generous. */
+      .why-divider {
+        width: 100%;
+        height: 6px;
+        margin: clamp(68px, 8.8vw, 92px) auto 0;
+        border-radius: 999px;
+        background: linear-gradient(180deg,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.55) 26%,
+          rgba(0, 0, 0, 0.7) 44%,
+          rgba(165, 232, 242, 0.34) 50%,
+          rgba(0, 0, 0, 0.7) 56%,
+          rgba(0, 0, 0, 0.55) 74%,
+          rgba(0, 0, 0, 0) 100%);
+        box-shadow:
+          0 6px 14px rgba(0, 0, 0, 0.55),
+          0 -4px 10px rgba(0, 0, 0, 0.4),
+          inset 0 1px 0 rgba(190, 238, 246, 0.14),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.6);
+      }
+
+      /* ---------- Trusted By strip (sits inside the Why section) ---------- */
+      .trusted {
+        margin-top: clamp(68px, 8.8vw, 92px);
+        display: flex;
+        align-items: center;
+        gap: clamp(26px, 4vw, 54px);
+        flex-wrap: wrap;
+        text-align: left;
+      }
+      .trusted-label {
+        margin: 0;
+        font-family: "Orbitron", sans-serif;
+        font-weight: 700;
+        font-size: clamp(15px, 1.55vw, 19px);
+        line-height: 1.3;
+        letter-spacing: 0.01em;
+        color: var(--ink);
+        flex: none;
+      }
+      .trusted-label .accent {
+        background: linear-gradient(92deg, var(--teal) 0%, #29b6ec 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+      .tlogos {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: clamp(22px, 3.6vw, 48px);
+        flex-wrap: wrap;
+        min-width: 0;
+      }
+      .tlogo {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: rgba(148, 166, 184, 0.52);
+        transition: color 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: transform;
+      }
+      .tlogo svg { display: block; width: 30px; height: 30px; flex: none; }
+      .tlogo span {
+        font-size: clamp(14.5px, 1.35vw, 16.5px);
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        white-space: nowrap;
+      }
+      .tlogo:hover { color: #ffffff; transform: scale(1.09); }
+      @media (max-width: 760px) {
+        .trusted { flex-direction: column; align-items: flex-start; gap: 20px; }
+        .tlogos { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 26px; }
+        .tlogo svg { width: 27px; height: 27px; }
+      }
+
+      /* ---------- Sparkles (the shiny bits kept from the design) ---------- */
+      .spark {
+        position: absolute;
+        z-index: 1;
+        pointer-events: none;
+        color: #bff3ec;
+        opacity: 0.55;
+      }
+      .spark svg { display: block; width: 100%; height: 100%; }
+
+      /* ---------- Transform Your Business (split hero-style section) ----------
+         Built from the approved reference: the robot-hand / laptop photo
+         fills the left half edge-to-edge, and the right half sits on the
+         reference's own background shader — a DARK deep navy, nearly
+         black, with only faint blue blooms top-right and bottom-right,
+         dim circuit traces and tiny dot clusters. The stat chips are true
+         glassmorphism, exactly as in the reference: dark translucent navy
+         glass with backdrop blur, a glossy top sheen, thin glowing teal
+         borders and soft vertical light streaks on both edges. A bright
+         pulse of light travels continuously around the border of the
+         button and of every stat card. */
+      /* Travelling border glow — one bright pulse of light runs continuously
+         around the border of the Learn More button and of every stat card,
+         the same effect on all of them. A conic-gradient ring is masked to
+         the border only, and its angle rotates forever. */
+      @property --ga { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+      @keyframes spinGa { to { --ga: 360deg; } }
+
+      .transform {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-height: 448px;
+        overflow: hidden;
+        background:
+          radial-gradient(900px 540px at 88% -6%, rgba(46, 110, 180, 0.19), rgba(46, 110, 180, 0) 62%),
+          radial-gradient(780px 540px at 96% 108%, rgba(38, 120, 200, 0.13), rgba(38, 120, 200, 0) 60%),
+          radial-gradient(680px 460px at 66% 58%, rgba(35, 95, 165, 0.11), rgba(35, 95, 165, 0) 65%),
+          linear-gradient(155deg, #0a1830 0%, #071426 48%, #050f1f 100%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+      }
+      .transform-media {
+        position: relative;
+        min-height: 100%;
+        overflow: hidden;
+      }
+      .transform-media img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 50%;
+        display: block;
+        filter: brightness(0.96) saturate(1.05) contrast(1.03);
+      }
+      .transform-media::after {
+        /* the photo melts into the navy shader at the seam, as in the
+           reference — the fade uses the section's own dark navy */
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, rgba(5, 15, 31, 0) 78%, rgba(5, 15, 31, 0.4) 100%),
+                    linear-gradient(0deg, rgba(5, 15, 31, 0.18) 0%, rgba(5, 15, 31, 0) 20%);
+        pointer-events: none;
+      }
+      .transform-circuit {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 52%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+        stroke: rgba(140, 222, 255, 0.23);
+        filter: drop-shadow(0 0 4px rgba(80, 200, 245, 0.18));
+      }
+      .transform-circuit circle { fill: rgba(150, 210, 255, 0.55); }
+      .transform-circuit g { fill: rgba(170, 232, 255, 0.48); }
+      .transform-copy {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(36px, 4.2vw, 62px) clamp(20px, 3.2vw, 48px) clamp(36px, 4.2vw, 62px) clamp(20px, 2.8vw, 39px);
+      }
+      .transform-copy h2 {
+        margin: 0;
+        font-family: "Manrope", sans-serif;
+        font-weight: 800;
+        font-size: clamp(22px, 2.35vw, 32px);
+        line-height: 1.18;
+        letter-spacing: -0.01em;
+        color: #ffffff;
+      }
+      .transform-copy h2 .accent {
+        color: #2fb9ec;
+        text-shadow: 0 0 20px rgba(47, 165, 236, 0.45), 0 0 48px rgba(47, 165, 236, 0.2);
+      }
+      .transform-copy .lead {
+        margin: 15px 0 0;
+        max-width: 560px;
+        font-size: clamp(13px, 1vw, 14.5px);
+        line-height: 1.6;
+        font-weight: 500;
+        color: #c3d5ee;
+      }
+      .btn-learn {
+        /* small, compact pill — sized exactly like the reference photo:
+           hugging its label, never stretched across the column */
+        position: relative;
+        margin-top: 21px;
+        align-self: flex-start;
+        width: auto;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 24px;
+        border-radius: 999px;
+        border: 1px solid rgba(96, 189, 248, 0.55);
+        background: linear-gradient(180deg, rgba(22, 62, 84, 0.32), rgba(6, 18, 34, 0.55));
+        backdrop-filter: blur(10px) saturate(1.25);
+        -webkit-backdrop-filter: blur(10px) saturate(1.25);
+        box-shadow:
+          0 0 16px rgba(47, 165, 236, 0.16),
+          inset 0 1px 0 rgba(255, 255, 255, 0.14),
+          inset 0 0 18px rgba(47, 165, 236, 0.06);
+        color: #56c2f5;
+        font-size: 13.5px;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        text-decoration: none;
+        transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                    box-shadow 0.45s ease,
+                    background 0.45s ease,
+                    border-color 0.45s ease;
+        will-change: transform;
+      }
+      .btn-learn::before {
+        /* the travelling border glow: a bright pulse circles the pill's
+           border forever (masked to the border ring only) */
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: 999px;
+        padding: 1.5px;
+        background: conic-gradient(from var(--ga),
+          rgba(125, 196, 250, 0) 0deg,
+          rgba(155, 215, 255, 0.95) 35deg,
+          rgba(125, 196, 250, 0) 85deg,
+          rgba(125, 196, 250, 0) 180deg,
+          rgba(155, 215, 255, 0.5) 215deg,
+          rgba(125, 196, 250, 0) 265deg);
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        mask-composite: exclude;
+        animation: spinGa 9s linear infinite;
+        pointer-events: none;
+      }
+      .btn-learn::after {
+        /* soft glass sheen across the top of the pill; on hover a light
+           sweep glides across the glass as the pill lifts */
+        content: "";
+        position: absolute;
+        inset: 1px;
+        border-radius: 999px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 55%);
+        pointer-events: none;
+        transition: background 0.45s ease;
+      }
+      .btn-learn:hover, .btn-learn:focus-visible {
+        /* the float: the pill lifts clearly off the surface, a soft shadow
+           opens up beneath it and the blue glow warms up — calm, not flashy */
+        transform: translateY(-6px) scale(1.02);
+        border-color: rgba(155, 215, 255, 0.8);
+        background: linear-gradient(180deg, rgba(30, 84, 108, 0.42), rgba(9, 26, 46, 0.62));
+        box-shadow:
+          0 18px 30px rgba(1, 8, 18, 0.55),
+          0 0 26px rgba(47, 165, 236, 0.28),
+          inset 0 1px 0 rgba(255, 255, 255, 0.2),
+          inset 0 0 20px rgba(47, 165, 236, 0.1);
+      }
+      .btn-learn:hover::after {
+        background: linear-gradient(105deg,
+          rgba(255, 255, 255, 0) 30%,
+          rgba(186, 230, 253, 0.16) 50%,
+          rgba(255, 255, 255, 0.12) 62%,
+          rgba(255, 255, 255, 0) 78%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0) 55%);
+      }
+      .btn-learn:active { transform: translateY(-2px) scale(1.01); }
+      .tstats {
+        margin-top: clamp(29px, 3.2vw, 41px);
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: clamp(8px, 1vw, 13px);
+        max-width: 460px;
+      }
+      .tstat {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        /* sized exactly like the reference crop: cards about 1.27x as wide
+           as they are tall — compact and thick through the middle, never
+           long flat strips */
+        aspect-ratio: 1.27 / 1;
+        padding: 14px 8px 13px;
+        border-radius: 12px;
+        border: 1px solid rgba(125, 196, 250, 0.45);
+        /* true glass, exactly as in the reference: a DARK translucent navy
+           glass the shader glows faintly through, with real backdrop blur,
+           a glossy top sheen, a soft luminous wash behind the icon and a
+           teal edge light — never a bright blue panel */
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 42%),
+          radial-gradient(120% 72% at 50% 0%, rgba(64, 200, 235, 0.16), rgba(64, 200, 235, 0) 60%),
+          linear-gradient(165deg,
+            rgba(43, 95, 140, 0.36) 0%,
+            rgba(11, 30, 55, 0.52) 55%,
+            rgba(6, 17, 34, 0.62) 100%);
+        backdrop-filter: blur(14px) saturate(1.3);
+        -webkit-backdrop-filter: blur(14px) saturate(1.3);
+        box-shadow:
+          inset 0 1px 0 rgba(186, 230, 253, 0.28),
+          inset 0 0 24px rgba(56, 165, 245, 0.08),
+          0 0 20px rgba(47, 150, 235, 0.16),
+          0 16px 30px rgba(1, 6, 16, 0.45);
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+      }
+      .tstat::before {
+        /* the travelling border glow, same as the button: a bright pulse
+           circles the card's border forever (masked to the border ring) */
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 12px;
+        padding: 1.5px;
+        background: conic-gradient(from var(--ga),
+          rgba(125, 196, 250, 0) 0deg,
+          rgba(155, 215, 255, 0.95) 35deg,
+          rgba(125, 196, 250, 0) 85deg,
+          rgba(125, 196, 250, 0) 180deg,
+          rgba(155, 215, 255, 0.5) 215deg,
+          rgba(125, 196, 250, 0) 265deg);
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        mask-composite: exclude;
+        animation: spinGa 10s linear infinite;
+        pointer-events: none;
+        z-index: 3;
+      }
+      .tstat:nth-child(2)::before { animation-delay: -3.3s; }
+      .tstat:nth-child(3)::before { animation-delay: -6.7s; }
+      .tstat::after {
+        /* the bright vertical light streaks glowing through the left and
+           right edges of each card in the reference: a thin bright core
+           with a wider soft halo around it */
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(125, 196, 250, 0) 16%, rgba(125, 196, 250, 0.2) 50%, rgba(125, 196, 250, 0) 84%) left center / 8px 66% no-repeat,
+          linear-gradient(180deg, rgba(125, 196, 250, 0) 16%, rgba(125, 196, 250, 0.2) 50%, rgba(125, 196, 250, 0) 84%) right center / 8px 66% no-repeat,
+          linear-gradient(180deg, rgba(186, 230, 253, 0) 20%, rgba(186, 230, 253, 0.9) 50%, rgba(186, 230, 253, 0) 80%) left center / 2px 60% no-repeat,
+          linear-gradient(180deg, rgba(186, 230, 253, 0) 20%, rgba(186, 230, 253, 0.9) 50%, rgba(186, 230, 253, 0) 80%) right center / 2px 60% no-repeat;
+        pointer-events: none;
+      }
+      .tstat:hover {
+        transform: translateY(-5px);
+        border-color: rgba(155, 215, 255, 0.6);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.2),
+          inset 0 0 26px rgba(56, 165, 245, 0.11),
+          0 14px 28px rgba(1, 6, 16, 0.4),
+          0 0 26px rgba(47, 150, 235, 0.24);
+      }
+      .tstat .tic { color: #4fc3f7; line-height: 0; filter: drop-shadow(0 0 9px rgba(61, 185, 242, 0.6)); }
+      .tstat .tic svg { width: 24px; height: 24px; display: block; }
+      .tstat .num {
+        margin-top: 8px;
+        font-size: clamp(13px, 1.05vw, 15px);
+        font-weight: 800;
+        color: #8fd8ff;
+        line-height: 1.25;
+        text-shadow: 0 0 10px rgba(56, 165, 245, 0.3);
+      }
+      .tstat .lbl {
+        margin-top: 2px;
+        font-size: clamp(11px, 0.85vw, 12px);
+        font-weight: 600;
+        color: #d6efff;
+        line-height: 1.35;
+      }
+      .tstat .single {
+        margin-top: auto;
+        padding-top: 7px;
+        font-size: clamp(12px, 0.9vw, 13px);
+        font-weight: 700;
+        color: #c2e6fa;
+        line-height: 1.35;
+      }
+      @media (max-width: 900px) {
+        .transform { grid-template-columns: 1fr; min-height: 0; }
+        .transform-media { height: 266px; min-height: 0; }
+        .transform-media::after { background: linear-gradient(0deg, rgba(5, 15, 31, 0.45) 0%, rgba(5, 15, 31, 0) 30%); }
+        .transform-circuit { width: 100%; opacity: 0.7; }
+        .transform-copy { padding: 32px 20px 39px; }
+        .tstats { max-width: none; }
+      }
+      @media (max-width: 560px) {
+        .transform-media { height: 203px; }
+        .transform-copy { padding: 28px 16px 32px; }
+        .transform-copy h2 { font-size: clamp(20px, 6vw, 26px); }
+        .tstats { gap: 7px; }
+        .tstat { padding: 10px 4px 9px; border-radius: 10px; aspect-ratio: auto; min-height: 88px; }
+        .tstat::before { border-radius: 10px; }
+        .tstat .tic svg { width: 19px; height: 19px; }
+        .btn-learn { width: auto; padding: 7px 20px; font-size: 13px; }
+      }
+      @media (max-width: 400px) {
+        .tstats { grid-template-columns: 1fr 1fr; }
+        .tstat:last-child { grid-column: 1 / -1; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .tstat::before, .btn-learn::before { animation: none !important; }
+      }
+
+      /* ---------- Explore Best AI Services (approved reference design) ----------
+         Same-to-same with the chosen reference: a dark navy shader
+         background with faint geometric facets, dot grids, thin circuit
+         lines and soft blue bokeh; four LARGE glass cards in a 2x2 grid
+         on the right — dark translucent navy glass, thin glowing blue
+         borders (brighter along the top edge), a big glowing blue line
+         icon centred over a bold white title and a short centred text.
+         The section is split in two parts exactly as asked: the left
+         intro column (heading + paragraph + All Services button) lives
+         ONLY in the first row and is exactly as tall as the first row's
+         two cards — it never reaches down beside the second row, and
+         the space beside the second-row cards stays empty. To keep it
+         that way the intro copy is set a touch smaller than the cards. */
+      .services {
+        position: relative;
+        overflow: hidden;
+        padding: clamp(50px, 5.25vw, 76px) clamp(16px, 3.2vw, 45px);
+        background:
+          radial-gradient(760px 480px at 96% 58%, rgba(40, 140, 230, 0.1), rgba(40, 140, 230, 0) 62%),
+          radial-gradient(900px 560px at 84% -10%, rgba(38, 105, 175, 0.14), rgba(38, 105, 175, 0) 62%),
+          radial-gradient(700px 520px at -6% 108%, rgba(30, 95, 150, 0.13), rgba(30, 95, 150, 0) 64%),
+          linear-gradient(155deg, #081426 0%, #050f1f 52%, #030a17 100%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+      }
+      .services-decor { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+      .services-decor .facet {
+        position: absolute; inset: 0;
+        background:
+          linear-gradient(118deg, rgba(70, 150, 200, 0) 58%, rgba(70, 150, 200, 0.05) 74%, rgba(70, 150, 200, 0) 90%),
+          linear-gradient(24deg, rgba(70, 150, 200, 0) 66%, rgba(70, 150, 200, 0.04) 82%, rgba(70, 150, 200, 0) 96%);
+      }
+      .services-decor .dots-tr {
+        position: absolute; top: 0; right: 0; width: 300px; height: 210px;
+        background-image: radial-gradient(rgba(150, 210, 240, 0.34) 1.6px, rgba(150, 210, 240, 0) 1.7px);
+        background-size: 17px 17px;
+        -webkit-mask: linear-gradient(200deg, #000 30%, rgba(0, 0, 0, 0) 88%);
+        mask: linear-gradient(200deg, #000 30%, rgba(0, 0, 0, 0) 88%);
+      }
+      .services-decor .dots-bl {
+        position: absolute; left: 38px; bottom: 26px; width: 190px; height: 120px; opacity: 0.5;
+        background-image: radial-gradient(rgba(150, 210, 240, 0.3) 1.5px, rgba(150, 210, 240, 0) 1.6px);
+        background-size: 15px 15px;
+        -webkit-mask: linear-gradient(20deg, #000 25%, rgba(0, 0, 0, 0) 90%);
+        mask: linear-gradient(20deg, #000 25%, rgba(0, 0, 0, 0) 90%);
+      }
+      .services-decor .arc-bl {
+        position: absolute; left: -190px; bottom: -250px; width: 620px; height: 480px;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, rgba(38, 105, 165, 0.16), rgba(38, 105, 165, 0.05) 62%, rgba(38, 105, 165, 0) 72%);
+        box-shadow: inset 0 0 0 1px rgba(120, 200, 240, 0.05);
+      }
+      .services-decor .arc-br {
+        position: absolute; right: -230px; bottom: -300px; width: 640px; height: 500px;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, rgba(35, 115, 190, 0.13), rgba(35, 115, 190, 0.04) 62%, rgba(35, 115, 190, 0) 72%);
+      }
+      .services-decor .bokeh {
+        position: absolute; border-radius: 50%; filter: blur(16px);
+        background: radial-gradient(50% 50% at 50% 50%, rgba(70, 170, 245, 0.32), rgba(70, 170, 245, 0) 70%);
+      }
+      .services-decor .frame-lines { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .services-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-rows: 1fr 1fr;
+        gap: clamp(18px, 1.8vw, 28px) clamp(21px, 2.1vw, 32px);
+        align-items: stretch;
+      }
+      /* Intro — first row only, exactly the first-row cards' height */
+      .services-intro {
+        grid-column: 1;
+        grid-row: 1;
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-width: 0;
+        padding-right: clamp(2px, 0.8vw, 12px);
+      }
+      .services-intro h2 {
+        margin: 0;
+        font-family: "Manrope", sans-serif;
+        font-weight: 800;
+        font-size: clamp(25px, 2.38vw, 36px);
+        line-height: 1.14;
+        letter-spacing: -0.015em;
+        color: #ffffff;
+      }
+      .services-intro h2 .accent {
+        color: #2fb9ec;
+        text-shadow: 0 0 22px rgba(47, 165, 236, 0.35);
+      }
+      .services-intro p {
+        margin: clamp(11px, 1.1vw, 15px) 0 0;
+        max-width: 340px;
+        font-size: clamp(13px, 0.95vw, 14px);
+        line-height: 1.55;
+        font-weight: 500;
+        color: #c9d6ea;
+      }
+      .btn-services {
+        margin-top: clamp(15px, 1.4vw, 20px);
+        align-self: flex-start;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 21px;
+        border-radius: 8px;
+        border: 1px solid rgba(96, 189, 248, 0.55);
+        background: linear-gradient(180deg, rgba(24, 64, 112, 0.34), rgba(6, 20, 44, 0.52));
+        box-shadow: 0 0 16px rgba(47, 150, 235, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        color: #56c2f5;
+        font-size: 13.5px;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        text-decoration: none;
+        transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+        will-change: transform;
+      }
+      .btn-services:hover, .btn-services:focus-visible {
+        transform: translateY(-4px);
+        border-color: rgba(140, 207, 255, 0.85);
+        background: linear-gradient(180deg, rgba(32, 86, 140, 0.44), rgba(9, 28, 56, 0.62));
+        box-shadow: 0 16px 28px rgba(1, 8, 18, 0.5), 0 0 24px rgba(47, 150, 235, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      }
+      /* The empty space beside the second-row cards */
+      .services-spacer { grid-column: 1; grid-row: 2; }
+      /* Large glass service cards — glassmorphism matched to the close-up
+         reference photo the user approved: a DARK, near-black charcoal
+         glass (not a blue panel) — the fill stays almost black top to
+         bottom with only a faint diagonal sheen washing in from the
+         top-left corner and a soft glossy band across the top; the
+         border is a thin muted slate-blue line, lit by a soft blue edge
+         light that runs the full top edge and glows brightest down the
+         LEFT edge, plus a faint blue under-glow beneath the bottom edge.
+         The card reads as dark frosted glass floating on black. */
+      .svc-card {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-height: clamp(266px, 21vw, 308px);
+        padding: clamp(27px, 2.38vw, 36px) clamp(20px, 1.96vw, 31px);
+        border-radius: 10px;
+        border: 1px solid rgba(140, 183, 220, 0.28);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0) 34%),
+          linear-gradient(118deg, rgba(125, 196, 250, 0.07) 0%, rgba(125, 196, 250, 0) 46%),
+          linear-gradient(168deg, rgba(22, 34, 48, 0.94) 0%, rgba(12, 20, 31, 0.96) 52%, rgba(7, 12, 20, 0.97) 100%);
+        backdrop-filter: blur(18px) saturate(1.05);
+        -webkit-backdrop-filter: blur(18px) saturate(1.05);
+        box-shadow:
+          inset 0 1px 0 rgba(200, 232, 255, 0.13),
+          inset 0 0 36px rgba(0, 0, 0, 0.3),
+          0 22px 38px rgba(0, 0, 0, 0.6),
+          0 12px 26px -12px rgba(45, 150, 240, 0.14);
+        transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+        will-change: transform;
+      }
+      .svc-card::before {
+        /* the edge light from the photo: a soft blue line across the
+           whole top edge, and a brighter vertical streak glowing down
+           the left edge (thin bright core over a wider soft halo) */
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 10px;
+        background:
+          linear-gradient(90deg, rgba(110, 195, 255, 0.1) 0%, rgba(155, 215, 255, 0.55) 34%, rgba(155, 215, 255, 0.4) 62%, rgba(110, 195, 255, 0.08) 100%) top center / 100% 1px no-repeat,
+          linear-gradient(180deg, rgba(110, 195, 255, 0.16) 8%, rgba(110, 195, 255, 0.05) 55%, rgba(110, 195, 255, 0) 88%) left center / 9px 100% no-repeat,
+          linear-gradient(180deg, rgba(180, 225, 255, 0.95) 6%, rgba(180, 225, 255, 0.55) 42%, rgba(180, 225, 255, 0) 82%) left center / 2px 100% no-repeat,
+          linear-gradient(0deg, rgba(100, 180, 250, 0.16), rgba(100, 180, 250, 0) 70%) bottom center / 72% 1px no-repeat;
+        opacity: 0.9;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+      }
+      .svc-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(152, 205, 248, 0.48);
+        box-shadow:
+          inset 0 1px 0 rgba(212, 238, 255, 0.18),
+          inset 0 0 36px rgba(0, 0, 0, 0.3),
+          0 26px 42px rgba(0, 0, 0, 0.62),
+          0 14px 28px -12px rgba(45, 150, 240, 0.22);
+      }
+      .svc-card:hover::before { opacity: 1; }
+      .svc-icon {
+        color: #3db9f2;
+        line-height: 0;
+        filter: drop-shadow(0 0 12px rgba(61, 185, 242, 0.55)) drop-shadow(0 0 34px rgba(61, 185, 242, 0.22));
+      }
+      .svc-icon svg { display: block; width: clamp(73px, 6vw, 95px); height: clamp(73px, 6vw, 95px); }
+      /* the robot arm artwork is wide like its close-up photo (220:156),
+         so it renders wider than tall instead of squeezed into a square */
+      .svc-icon-wide svg { width: clamp(104px, 8.7vw, 137px); height: auto; }
+      .svc-card h3 {
+        margin: clamp(17px, 1.54vw, 22px) 0 0;
+        font-family: "Manrope", sans-serif;
+        font-weight: 800;
+        font-size: clamp(16px, 1.3vw, 20px);
+        line-height: 1.25;
+        letter-spacing: -0.01em;
+        color: #ffffff;
+      }
+      .svc-card p {
+        margin: 9px 0 0;
+        max-width: 340px;
+        font-size: clamp(13px, 0.95vw, 14px);
+        line-height: 1.55;
+        font-weight: 500;
+        color: #d5e2f2;
+      }
+      @media (max-width: 1020px) {
+        .services-inner { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto auto; }
+        .services-intro { grid-column: 1 / -1; grid-row: 1; padding-right: 0; }
+        .services-intro p { max-width: 520px; }
+        .services-spacer { display: none; }
+        .svc-card { min-height: 238px; }
+      }
+      @media (max-width: 768px) {
+        .services { padding-top: 42px; padding-bottom: 42px; }
+        .services-inner { gap: 16px; }
+        .svc-card { min-height: 220px; padding: 24px 18px; }
+      }
+      @media (max-width: 600px) {
+        .services { padding: 36px 14px 40px; }
+        .services-inner { grid-template-columns: 1fr; grid-template-rows: none; gap: 14px; }
+        .services-intro { grid-column: 1; text-align: left; }
+        .services-intro h2 { font-size: clamp(24px, 7vw, 30px); }
+        .svc-card { min-height: 0; padding: 27px 17px 28px; }
+        .svc-icon svg { width: 67px; height: 67px; }
+        .svc-icon-wide svg { width: 105px; height: auto; }
+        .btn-services { width: 100%; justify-content: center; }
+      }
+      @media (max-width: 400px) {
+        .svc-card h3 { font-size: 17px; }
+        .svc-card p { font-size: 13px; }
+      }
+
+      /* ---------- Completed Projects (design 4 · Medical + Space Robotics) ----------
+         Same-to-same with the finalised reference: a large rounded panel
+         on a near-black ground, Orbitron title with "Completed Projects"
+         in the site's bright blue, a centred lorem line, then two photo
+         cards whose dark glass info panels overlap the bottom of each
+         photo, and a solid bright-cyan pill button centred below.
+         COMPACT by request: every height is deliberately small — short
+         panel padding, a 232px-max photo, a shallow info overlap — so
+         the whole section fits inside one laptop/desktop viewport
+         without scrolling. Blue family only: #33bdf2 / #2fb9ec. */
+      .projects {
+        position: relative;
+        padding: 20px clamp(12px, 2vw, 26px) 24px;
+        background: linear-gradient(180deg, #020b11 0%, #01070b 100%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+      }
+      .projects-panel {
+        position: relative;
+        max-width: 1280px;
+        margin: 0 auto;
+        text-align: center;
+        padding: clamp(24px, 2.7vw, 34px) clamp(18px, 3.4vw, 46px) clamp(24px, 2.6vw, 32px);
+        border: 1px solid rgba(150, 195, 220, 0.22);
+        border-radius: 20px;
+        background:
+          radial-gradient(760px 360px at 50% 62%, rgba(23, 118, 138, 0.17), rgba(23, 118, 138, 0) 66%),
+          radial-gradient(620px 300px at 88% -8%, rgba(35, 115, 185, 0.11), rgba(35, 115, 185, 0) 62%),
+          radial-gradient(520px 280px at 4% 108%, rgba(25, 100, 140, 0.09), rgba(25, 100, 140, 0) 64%),
+          linear-gradient(165deg, #071923 0%, #05151f 50%, #030e15 100%);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 24px 48px rgba(0, 0, 0, 0.45);
+        overflow: hidden;
+      }
+      .projects-panel h2 {
+        margin: 0;
+        font-family: "Orbitron", sans-serif;
+        font-weight: 700;
+        font-size: clamp(23px, 2.65vw, 35px);
+        line-height: 1.2;
+        letter-spacing: 0.01em;
+        color: #ffffff;
+      }
+      .projects-panel h2 .accent {
+        color: #33bdf2;
+        text-shadow: 0 0 20px rgba(51, 189, 242, 0.35);
+      }
+      .projects-panel .psub {
+        margin: 11px auto 0;
+        max-width: 640px;
+        font-size: clamp(12.5px, 1.05vw, 13.5px);
+        line-height: 1.55;
+        font-weight: 500;
+        color: #93a5b5;
+      }
+      .proj-grid {
+        margin-top: clamp(20px, 2.2vw, 26px);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(20px, 2.6vw, 34px);
+        text-align: center;
+      }
+      .proj-card { position: relative; min-width: 0; }
+      .proj-media {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.45);
+      }
+      .proj-media img {
+        display: block;
+        width: 100%;
+        height: clamp(178px, 19.5vw, 230px);
+        object-fit: cover;
+        object-position: 50% 42%;
+        transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .proj-card:hover .proj-media img { transform: scale(1.035); }
+      .proj-info {
+        position: relative;
+        z-index: 2;
+        margin: -44px clamp(14px, 2.4vw, 32px) 0;
+        padding: 17px 22px 19px;
+        border-radius: 10px;
+        border: 1px solid rgba(160, 202, 228, 0.22);
+        background: linear-gradient(168deg, rgba(14, 32, 45, 0.86) 0%, rgba(6, 17, 26, 0.92) 100%);
+        backdrop-filter: blur(14px) saturate(1.1);
+        -webkit-backdrop-filter: blur(14px) saturate(1.1);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.07),
+          0 18px 32px rgba(0, 0, 0, 0.48);
+        transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s ease;
+      }
+      .proj-card:hover .proj-info {
+        transform: translateY(-4px);
+        border-color: rgba(140, 207, 255, 0.42);
+      }
+      .proj-info h3 {
+        margin: 0;
+        font-family: "Orbitron", sans-serif;
+        font-weight: 700;
+        font-size: clamp(15.5px, 1.45vw, 19.5px);
+        line-height: 1.3;
+        letter-spacing: 0.01em;
+        color: #ffffff;
+        white-space: nowrap;
+      }
+      .proj-info p {
+        margin: 8px auto 0;
+        max-width: 390px;
+        font-size: 13.5px;
+        line-height: 1.55;
+        font-weight: 500;
+        color: #9db0c0;
+      }
+      .proj-link {
+        margin-top: 12px;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        font-family: "Orbitron", sans-serif;
+        font-weight: 600;
+        font-size: 12.5px;
+        letter-spacing: 0.02em;
+        color: #33bdf2;
+        text-decoration: none;
+        transition: color 0.3s ease, gap 0.3s ease;
+      }
+      .proj-link svg { width: 14px; height: 14px; display: block; }
+      .proj-link:hover, .proj-link:focus-visible { color: #7dd3fc; gap: 11px; }
+      .btn-all-projects {
+        margin-top: clamp(20px, 2.2vw, 26px);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 36px;
+        border-radius: 999px;
+        border: 0;
+        background: linear-gradient(92deg, #2fd2e8 0%, #2fb9ec 100%);
+        box-shadow: 0 12px 26px -10px rgba(47, 185, 236, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+        color: #03222e;
+        font-family: "Orbitron", sans-serif;
+        font-weight: 600;
+        font-size: 13.5px;
+        letter-spacing: 0.02em;
+        text-decoration: none;
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+        will-change: transform;
+      }
+      .btn-all-projects:hover, .btn-all-projects:focus-visible {
+        transform: translateY(-3px);
+        box-shadow: 0 18px 32px -10px rgba(47, 185, 236, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      }
+      @media (max-width: 700px) {
+        .projects { padding-left: 10px; padding-right: 10px; }
+        .projects-panel { border-radius: 16px; padding-left: 14px; padding-right: 14px; }
+        .proj-grid { grid-template-columns: 1fr; }
+        .proj-media img { height: 200px; }
+        .proj-info { margin-left: 10px; margin-right: 10px; }
+        .proj-info h3 { white-space: normal; }
+      }
+
+      /* ---------- Testimonials · design 3 (Slider + Robot) ----------
+         Same-to-same with the finalised reference: on a deep-navy tech
+         ground with faint circuit traces, the Orbitron headline sits on
+         the left — "People Say" in the site's bright blue — with the
+         short trust line under it. On the right, one wide frosted-glass
+         slider card: a big blue quote mark, the client's words, then a
+         row with the round client photo, name and blue role on the left
+         and five blue stars on the right; below a hairline, the round
+         left/right arrow buttons with the slide dots between them.
+         A small blue-lit robot stands beside the card's bottom-right
+         corner, exactly as in the picture. The comments change ONLY
+         when an arrow (or a dot) is pressed — there is no auto-play,
+         no timer and no change on load or on scroll. Blue family only. */
+      .testimonials {
+        position: relative;
+        overflow: hidden;
+        padding: clamp(39px, 4.2vw, 59px) clamp(14px, 2.55vw, 33px) clamp(42px, 4.5vw, 63px);
+        background:
+          radial-gradient(615px 345px at 92% -6%, rgba(38, 110, 190, 0.16), rgba(38, 110, 190, 0) 62%),
+          radial-gradient(525px 315px at 55% 116%, rgba(30, 95, 170, 0.12), rgba(30, 95, 170, 0) 64%),
+          radial-gradient(420px 270px at -8% 108%, rgba(25, 85, 145, 0.1), rgba(25, 85, 145, 0) 62%),
+          linear-gradient(160deg, #050f22 0%, #030a18 55%, #02060f 100%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+      }
+      .testi-circuit {
+        position: absolute; inset: 0; width: 100%; height: 100%;
+        z-index: 0; pointer-events: none;
+        stroke: rgba(120, 190, 245, 0.13);
+      }
+      .testi-circuit circle { fill: rgba(140, 205, 255, 0.4); }
+      .testi-floor {
+        position: absolute; left: 0; right: 0; bottom: 0; height: 90px; z-index: 0;
+        pointer-events: none;
+        background:
+          linear-gradient(0deg, rgba(40, 130, 220, 0.1), rgba(40, 130, 220, 0) 78%),
+          linear-gradient(90deg, rgba(90, 180, 250, 0) 12%, rgba(90, 180, 250, 0.22) 50%, rgba(90, 180, 250, 0) 88%) top center / 100% 1px no-repeat;
+      }
+      .testi-inner {
+        position: relative; z-index: 2;
+        max-width: 930px; margin: 0 auto;
+        display: grid;
+        grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.45fr);
+        gap: clamp(23px, 3vw, 44px);
+        align-items: center;
+      }
+      .testi-copy h2 {
+        margin: 0;
+        font-family: "Orbitron", sans-serif;
+        font-weight: 700;
+        font-size: clamp(22px, 2.48vw, 34px);
+        line-height: 1.22;
+        letter-spacing: 0.01em;
+        color: #ffffff;
+      }
+      .testi-copy h2 .accent {
+        color: #2f9df6;
+        text-shadow: 0 0 22px rgba(47, 157, 246, 0.4);
+      }
+      .testi-copy p {
+        margin: clamp(15px, 1.65vw, 23px) 0 0;
+        max-width: 300px;
+        font-size: clamp(11px, 0.94vw, 13px);
+        line-height: 1.6;
+        font-weight: 600;
+        color: #a9c3de;
+      }
+      .testi-stage { position: relative; min-width: 0; }
+      .testi-card {
+        position: relative;
+        border-radius: 17px;
+        border: 1px solid rgba(140, 200, 250, 0.34);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0) 30%),
+          radial-gradient(120% 90% at 82% 0%, rgba(90, 160, 235, 0.2), rgba(90, 160, 235, 0) 55%),
+          linear-gradient(168deg, rgba(52, 82, 122, 0.5) 0%, rgba(16, 34, 60, 0.72) 52%, rgba(7, 18, 36, 0.88) 100%);
+        backdrop-filter: blur(16px) saturate(1.2);
+        -webkit-backdrop-filter: blur(16px) saturate(1.2);
+        box-shadow:
+          inset 0 1px 0 rgba(200, 232, 255, 0.22),
+          inset 1px 0 0 rgba(120, 195, 250, 0.14),
+          0 21px 41px rgba(0, 0, 0, 0.5),
+          0 0 33px rgba(45, 130, 220, 0.12);
+        padding: clamp(21px, 2.25vw, 32px) clamp(18px, 2.55vw, 38px) clamp(17px, 1.8vw, 23px);
+      }
+      .testi-card::after {
+        /* the soft blue edge light glowing along the card's bottom rim */
+        content: "";
+        position: absolute; left: 6%; right: 6%; bottom: -1px; height: 2px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(70, 170, 250, 0), rgba(90, 190, 255, 0.75) 50%, rgba(70, 170, 250, 0));
+        filter: blur(1px);
+        pointer-events: none;
+      }
+      .testi-quote-mark { color: #2fb9ec; line-height: 0; filter: drop-shadow(0 0 14px rgba(47, 185, 236, 0.45)); }
+      .testi-quote-mark svg { display: block; width: clamp(35px, 3.3vw, 47px); height: auto; }
+      .testi-slide { margin-top: clamp(12px, 1.35vw, 18px); }
+      .testi-slide.testi-swap { animation: testiIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+      @keyframes testiIn {
+        from { opacity: 0; transform: translateX(12px); }
+        to   { opacity: 1; transform: translateX(0); }
+      }
+      .testi-text {
+        margin: 0;
+        min-height: 89px;
+        font-size: clamp(12.5px, 1.13vw, 15.5px);
+        line-height: 1.58;
+        font-weight: 600;
+        color: #f2f7fd;
+      }
+      .testi-meta {
+        margin-top: clamp(14px, 1.5vw, 20px);
+        display: flex;
+        align-items: center;
+        gap: clamp(10px, 1.13vw, 14px);
+        flex-wrap: wrap;
+      }
+      .testi-avatar {
+        width: clamp(44px, 4.05vw, 56px);
+        height: clamp(44px, 4.05vw, 56px);
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: 50% 32%;
+        flex: none;
+        border: 2px solid rgba(160, 215, 255, 0.55);
+        box-shadow: 0 0 18px rgba(60, 160, 245, 0.35);
+        background: #0a1a30;
+      }
+      .testi-person { min-width: 0; }
+      .testi-name {
+        font-family: "Orbitron", sans-serif;
+        font-weight: 700;
+        font-size: clamp(12px, 1.13vw, 15px);
+        letter-spacing: 0.01em;
+        color: #ffffff;
+        line-height: 1.25;
+      }
+      .testi-role {
+        margin-top: 2px;
+        font-size: clamp(10px, 0.83vw, 11px);
+        font-weight: 600;
+        color: #57b6f7;
+      }
+      .testi-stars {
+        margin-left: auto;
+        /* inset from the card's right edge, as in the reference, so the
+           whole row of five stars ends well clear of the robot */
+        margin-right: clamp(23px, 2.55vw, 33px);
+        display: inline-flex;
+        gap: 4px;
+        flex: none;
+        color: #3d9bff;
+        filter: drop-shadow(0 0 7px rgba(61, 155, 255, 0.55));
+      }
+      .testi-stars svg { display: block; width: clamp(14px, 1.28vw, 18px); height: clamp(14px, 1.28vw, 18px); flex: none; }
+      .testi-controls {
+        margin-top: clamp(14px, 1.5vw, 18px);
+        padding-top: clamp(12px, 1.35vw, 17px);
+        border-top: 1px solid rgba(150, 195, 240, 0.16);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(14px, 1.95vw, 26px);
+      }
+      .testi-arrow {
+        width: 39px; height: 39px;
+        border-radius: 50%;
+        flex: none;
+        display: inline-flex; align-items: center; justify-content: center;
+        color: #4db2ff;
+        background: radial-gradient(circle at 50% 32%, rgba(50, 120, 200, 0.32), rgba(7, 20, 40, 0.72) 78%);
+        border: 1.5px solid rgba(90, 175, 250, 0.6);
+        box-shadow: 0 0 16px rgba(50, 140, 235, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+        transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+      }
+      .testi-arrow svg { display: block; width: 16px; height: 16px; }
+      .testi-arrow:hover, .testi-arrow:focus-visible {
+        transform: translateY(-2px);
+        border-color: rgba(150, 215, 255, 0.9);
+        box-shadow: 0 0 24px rgba(50, 150, 245, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      }
+      .testi-arrow:active { transform: translateY(0) scale(0.96); }
+      .testi-dots { display: inline-flex; align-items: center; gap: 8px; }
+      .testi-dot {
+        width: 7px; height: 7px;
+        border-radius: 50%;
+        border: 1px solid rgba(170, 205, 240, 0.45);
+        background: rgba(160, 190, 220, 0.3);
+        padding: 0;
+        transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      }
+      .testi-dot:hover { transform: scale(1.25); }
+      .testi-dot.on {
+        background: #33bdf2;
+        border-color: rgba(160, 220, 255, 0.9);
+        box-shadow: 0 0 10px rgba(51, 189, 242, 0.8);
+      }
+      /* The small blue-lit robot standing beside the card, as in the
+         picture — the user's own robot from image-27.png, cut out of
+         its dark background (assets/testi-robot.png), kept still. */
+      .testi-robot {
+        position: absolute;
+        /* shifted out to the right of the card and shrunk a touch, so
+           the robot stands clear of the star row and all five blue
+           stars stay fully visible, exactly as in the reference */
+        right: -26px;
+        bottom: -8px;
+        width: clamp(69px, 6.75vw, 90px);
+        aspect-ratio: 169 / 263;
+        z-index: 3;
+        pointer-events: none;
+      }
+      .testi-robot img {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        display: block;
+        filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.45)) drop-shadow(0 0 16px rgba(60, 160, 245, 0.25));
+        user-select: none; -webkit-user-drag: none;
+      }
+      .testi-robot .tr-glow {
+        position: absolute; left: 50%; bottom: -4%; width: 84%; height: 20px;
+        transform: translateX(-50%);
+        background: radial-gradient(50% 50% at 50% 50%, rgba(70, 175, 255, 0.5), rgba(70, 175, 255, 0) 70%);
+        filter: blur(7px);
+      }
+      @media (max-width: 1020px) {
+        .testi-inner { grid-template-columns: 1fr; gap: 23px; max-width: 700px; }
+        .testi-copy p { max-width: 390px; }
+        .testi-text { min-height: 0; }
+        .testi-robot { right: -14px; }
+      }
+      @media (max-width: 640px) {
+        .testimonials { padding: 32px 11px 36px; }
+        .testi-card { border-radius: 14px; padding: 18px 14px 15px; }
+        .testi-copy h2 { font-size: clamp(19px, 5.55vw, 24px); }
+        .testi-text { font-size: 12px; line-height: 1.55; }
+        .testi-meta { flex-wrap: wrap; row-gap: 6px; }
+        .testi-stars { margin-left: 0; margin-right: 0; width: 100%; padding-left: calc(clamp(44px, 4.05vw, 56px) + clamp(10px, 1.13vw, 14px)); margin-top: -5px; flex-wrap: nowrap; }
+        .testi-arrow { width: 35px; height: 35px; }
+        .testi-controls { gap: 12px; flex-wrap: wrap; }
+        .testi-dots { gap: 6px; }
+        .testi-robot { width: 59px; right: -2px; bottom: -6px; }
+      }
+      @media (max-width: 400px) {
+        .testimonials { padding-left: 10px; padding-right: 10px; }
+        .testi-card { padding: 16px 12px 14px; }
+        .testi-quote-mark svg { width: 30px; }
+        .testi-robot { width: 52px; right: 0; }
+        .testi-stars { padding-left: 0; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .testi-slide.testi-swap { animation: none !important; }
+      }
+
+      /* ---------- Stats strip (image-28 · same-to-same) ----------
+         Built exactly from the reference strip: on the reference's own
+         near-black navy ground (#000c14), four equal groups spread the
+         full width, split by thin vertical divider lines in the
+         reference's divider colour (#141f26). Each group pairs a bright
+         cyan line icon on the left with the big white Orbitron number —
+         its "+" in the same bright cyan — and the muted grey label
+         underneath. The four icons are bright cyan line icons drawn
+         to the reference's exact original motifs: a wireframe globe
+         with three people underneath (Trusted Partner), a user bust
+         with three stars underneath (Worldwide User), a scalloped
+         rosette seal with a thumbs-up inside and ribbons below
+         (Years Of Experience), and a circular star medal with
+         ribbons (Products AI Award) — all stroked in currentColor,
+         set to the cyan below.
+         Cyan sampled from the image itself: rgb(39,187,208).
+         Sizing pass: the strip's internal sizes are 0.8x the original
+         (icons, numbers, labels, inner gaps and side padding), while
+         the top and bottom padding — the gaps to the Testimonials
+         section above and to the page end below — are doubled. */
+      .stats-strip {
+        position: relative;
+        background: #000c14;
+        padding: clamp(52px, 6vw, 72px) clamp(12.8px, 2.4vw, 32px) clamp(56px, 6.4vw, 76px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+      }
+      .stats-inner {
+        max-width: 1240px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .stat-item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: clamp(11.2px, 1.12vw, 15.2px);
+        padding: 3.2px clamp(8px, 1.28vw, 19.2px);
+        min-width: 0;
+      }
+      .stat-item + .stat-item::before {
+        /* the thin vertical divider between groups, as in the image */
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1px;
+        height: 41.6px;
+        background: #141f26;
+      }
+      .stat-icon {
+        flex: none;
+        color: #27bbd0;
+        line-height: 0;
+        filter: drop-shadow(0 0 5.6px rgba(39, 187, 208, 0.35));
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), filter 0.35s ease;
+      }
+      .stat-icon svg { display: block; width: clamp(36.8px, 3.36vw, 44.8px); height: clamp(36.8px, 3.36vw, 44.8px); }
+      .stat-item:hover .stat-icon {
+        transform: translateY(-2.4px);
+        filter: drop-shadow(0 0 9.6px rgba(39, 187, 208, 0.55));
+      }
+      .stat-text { min-width: 0; }
+      .stat-num {
+        font-family: "Orbitron", sans-serif;
+        font-weight: 800;
+        font-size: clamp(18.4px, 1.88vw, 25.6px);
+        line-height: 1.1;
+        letter-spacing: 0.01em;
+        color: #ffffff;
+        white-space: nowrap;
+      }
+      .stat-num .plus {
+        color: #27bbd0;
+        font-size: 0.62em;
+        font-weight: 800;
+        margin-left: 5.6px;
+        vertical-align: 0.32em;
+      }
+      .stat-lbl {
+        margin-top: 4.8px;
+        font-size: clamp(10px, 0.84vw, 11.6px);
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        line-height: 1.3;
+        color: #7e8fa0;
+        white-space: nowrap;
+      }
+      @media (max-width: 900px) {
+        .stats-inner { grid-template-columns: 1fr 1fr; row-gap: 20.8px; }
+        .stat-item:nth-child(3)::before { display: none; }
+        .stat-item { padding-left: clamp(3.2px, 1.6vw, 12.8px); }
+      }
+      @media (max-width: 520px) {
+        .stats-strip { padding: 48px 11.2px 52px; }
+        .stats-inner { grid-template-columns: 1fr; row-gap: 16px; }
+        .stat-item::before { display: none !important; }
+        .stat-item { padding: 0 3.2px; }
+        .stat-icon svg { width: 36.8px; height: 36.8px; }
+        .stat-num { font-size: 19.2px; }
+        .stat-lbl { white-space: normal; }
+      }
+
+      /* ---------- Latest Blog & Articles (design 4 · Neon Grid) ----------
+         Same-to-same with the chosen mockup: a near-black navy ground
+         ruled with a faint blue grid and washed with blue glow, the
+         Orbitron headline with "Articles" in bright blue, then a 2x2
+         grid of neon-bordered cards — photo on top, bold white title,
+         muted excerpt, and a round author photo with name and date.
+         The four photos and the four author portraits are cropped
+         directly from the approved mockup image itself. Blue only.
+         Clicking a card opens the in-page article view below.
+         COMPACT pass: every size in this section is 0.75x of the
+         original (padding, container, headline, gaps, card padding,
+         type, avatars) — design, colours and content unchanged, and
+         the article view below keeps its original sizes. */
+      .blog {
+        position: relative;
+        overflow: hidden;
+        padding: clamp(36px, 4.2vw, 57px) clamp(12px, 2.25vw, 30px) clamp(42px, 4.8vw, 66px);
+        background:
+          radial-gradient(660px 390px at 88% 26%, rgba(35, 110, 220, 0.15), rgba(35, 110, 220, 0) 62%),
+          radial-gradient(570px 420px at 4% 84%, rgba(30, 100, 210, 0.12), rgba(30, 100, 210, 0) 62%),
+          radial-gradient(465px 285px at 50% -6%, rgba(40, 120, 235, 0.1), rgba(40, 120, 235, 0) 64%),
+          linear-gradient(rgba(80, 155, 255, 0.055) 1px, rgba(0, 0, 0, 0) 1px),
+          linear-gradient(90deg, rgba(80, 155, 255, 0.055) 1px, rgba(0, 0, 0, 0) 1px),
+          linear-gradient(180deg, #020610 0%, #010409 100%);
+        background-size: auto, auto, auto, 88px 88px, 88px 88px, auto;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+      }
+      .blog-inner { position: relative; z-index: 2; max-width: 885px; margin: 0 auto; }
+      .blog h2 {
+        margin: 0;
+        text-align: center;
+        font-family: "Orbitron", sans-serif;
+        font-weight: 800;
+        font-size: clamp(21px, 2.93vw, 39px);
+        line-height: 1.16;
+        letter-spacing: 0.01em;
+        color: #ffffff;
+        text-shadow: 0 0 26px rgba(70, 150, 255, 0.35);
+      }
+      .blog h2 .accent {
+        color: #2f9dff;
+        text-shadow: 0 0 20px rgba(47, 157, 255, 0.65), 0 0 45px rgba(47, 157, 255, 0.3);
+      }
+      .blog-grid {
+        margin-top: clamp(26px, 3vw, 39px);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(20px, 2.25vw, 32px);
+      }
+      .blog-card {
+        position: relative;
+        display: block;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+        padding: clamp(15px, 1.65vw, 21px);
+        border-radius: 9px;
+        border: 1px solid rgba(96, 175, 255, 0.55);
+        background: linear-gradient(168deg, rgba(13, 30, 54, 0.92) 0%, rgba(7, 16, 31, 0.96) 55%, rgba(4, 10, 20, 0.98) 100%);
+        box-shadow:
+          0 0 17px rgba(45, 140, 255, 0.22),
+          0 0 41px rgba(45, 140, 255, 0.08),
+          inset 0 0 20px rgba(45, 140, 255, 0.06),
+          inset 0 1px 0 rgba(190, 225, 255, 0.16);
+        transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+        will-change: transform;
+      }
+      .blog-card:hover, .blog-card:focus-visible {
+        transform: translateY(-4.5px);
+        border-color: rgba(140, 205, 255, 0.9);
+        box-shadow:
+          0 0 24px rgba(45, 150, 255, 0.4),
+          0 0 56px rgba(45, 150, 255, 0.14),
+          inset 0 0 23px rgba(45, 150, 255, 0.09),
+          inset 0 1px 0 rgba(200, 232, 255, 0.22);
+      }
+      .blog-card:active { transform: translateY(-1.5px); }
+      .blog-media { border-radius: 6px; overflow: hidden; box-shadow: 0 9px 20px rgba(0, 0, 0, 0.5); }
+      .blog-media img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 533 / 234;
+        object-fit: cover;
+        transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .blog-card:hover .blog-media img { transform: scale(1.04); }
+      .blog-card h3 {
+        margin: clamp(14px, 1.35vw, 18px) 0 0;
+        font-family: "Manrope", sans-serif;
+        font-weight: 800;
+        font-size: clamp(14px, 1.39vw, 19px);
+        line-height: 1.28;
+        letter-spacing: -0.01em;
+        color: #ffffff;
+      }
+      .blog-card .excerpt {
+        margin: 8px 0 0;
+        font-size: clamp(10px, 0.86vw, 12px);
+        line-height: 1.6;
+        font-weight: 500;
+        color: #aebfd4;
+      }
+      .blog-meta {
+        margin-top: clamp(14px, 1.35vw, 18px);
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        flex-wrap: wrap;
+      }
+      .blog-meta img {
+        width: 33px; height: 33px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex: none;
+        border: 2px solid rgba(150, 205, 255, 0.5);
+        box-shadow: 0 0 11px rgba(60, 150, 255, 0.3);
+        background: #0a1a30;
+      }
+      /* base sizes — the article view's meta row reuses these classes
+         and keeps the original sizes; the card overrides below scale
+         them to 0.75x only inside the blog grid */
+      .blog-author { font-size: 15px; font-weight: 700; color: #ffffff; }
+      .blog-date { font-size: 14.5px; font-weight: 500; color: #93a7bd; display: inline-flex; align-items: center; gap: 12px; }
+      .blog-date::before { content: ""; width: 4px; height: 4px; border-radius: 50%; background: #7d93ab; flex: none; }
+      .blog-card .blog-author { font-size: 11px; }
+      .blog-card .blog-date { font-size: 11px; gap: 9px; }
+      .blog-card .blog-date::before { width: 3px; height: 3px; }
+      @media (max-width: 760px) {
+        .blog-grid { grid-template-columns: 1fr; }
+        .blog { background-size: auto, auto, auto, 63px 63px, 63px 63px, auto; }
+      }
+      @media (max-width: 480px) {
+        .blog { padding-left: 9px; padding-right: 9px; }
+        .blog-card { padding: 12px; }
+        .blog-meta img { width: 29px; height: 29px; }
+      }
+
+      /* ---------- Blog article view (opens in-page on card click) ----------
+         Same neon-grid world as the blog section: the reader lands on
+         the article inside this page — back button, the card's own
+         photo large, its title, author and date, then the full post. */
+      .article-view {
+        display: none;
+        position: relative;
+        overflow: hidden;
+        min-height: 100svh;
+        padding: clamp(30px, 4vw, 52px) clamp(16px, 3vw, 40px) clamp(60px, 7vw, 96px);
+        background:
+          radial-gradient(880px 520px at 88% 8%, rgba(35, 110, 220, 0.14), rgba(35, 110, 220, 0) 62%),
+          radial-gradient(760px 560px at 4% 92%, rgba(30, 100, 210, 0.11), rgba(30, 100, 210, 0) 62%),
+          linear-gradient(rgba(80, 155, 255, 0.05) 1px, rgba(0, 0, 0, 0) 1px),
+          linear-gradient(90deg, rgba(80, 155, 255, 0.05) 1px, rgba(0, 0, 0, 0) 1px),
+          linear-gradient(180deg, #020610 0%, #010409 100%);
+        background-size: auto, auto, 118px 118px, 118px 118px, auto;
+      }
+      body.reading .article-view { display: block; }
+      body.reading main, body.reading .nav-min, body.reading .hero { display: none; }
+      .article-inner { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+      .btn-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 10px 20px;
+        border-radius: 999px;
+        border: 1px solid rgba(96, 175, 255, 0.6);
+        background: linear-gradient(180deg, rgba(20, 55, 100, 0.4), rgba(6, 18, 38, 0.6));
+        box-shadow: 0 0 18px rgba(45, 140, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        color: #6fc2ff;
+        font-family: "Orbitron", sans-serif;
+        font-weight: 600;
+        font-size: 13px;
+        letter-spacing: 0.03em;
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+      }
+      .btn-back svg { width: 15px; height: 15px; display: block; }
+      .btn-back:hover, .btn-back:focus-visible {
+        transform: translateY(-2px);
+        border-color: rgba(150, 212, 255, 0.9);
+        box-shadow: 0 14px 26px rgba(1, 8, 18, 0.5), 0 0 26px rgba(45, 150, 255, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      }
+      .article-media {
+        margin-top: clamp(24px, 3vw, 36px);
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid rgba(96, 175, 255, 0.4);
+        box-shadow: 0 0 30px rgba(45, 140, 255, 0.2), 0 22px 44px rgba(0, 0, 0, 0.55);
+      }
+      .article-media img { display: block; width: 100%; aspect-ratio: 533 / 234; object-fit: cover; }
+      .article-view h1 {
+        margin: clamp(24px, 3vw, 34px) 0 0;
+        font-family: "Orbitron", sans-serif;
+        font-weight: 800;
+        font-size: clamp(24px, 3.4vw, 38px);
+        line-height: 1.24;
+        letter-spacing: 0.01em;
+        color: #ffffff;
+        text-shadow: 0 0 28px rgba(70, 150, 255, 0.3);
+      }
+      .article-meta {
+        margin-top: 18px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        padding-bottom: 22px;
+        border-bottom: 1px solid rgba(110, 175, 250, 0.18);
+      }
+      .article-meta img {
+        width: 46px; height: 46px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex: none;
+        border: 2px solid rgba(150, 205, 255, 0.5);
+        box-shadow: 0 0 14px rgba(60, 150, 255, 0.3);
+        background: #0a1a30;
+      }
+      .article-body { margin-top: 8px; }
+      .article-body p {
+        margin: 20px 0 0;
+        font-size: clamp(15px, 1.3vw, 17px);
+        line-height: 1.78;
+        font-weight: 500;
+        color: #c3d4e8;
+      }
+      .article-body p:first-child { margin-top: 22px; }
+
+      /* ---------- Footer · design 3 · Centred Glass ----------
+         Same-to-same with the approved footer mockup: pure black
+         ground washed with soft blue smoke, the glowing blue robot
+         head (cropped from the mockup itself, assets/footer-bot.png)
+         centred over the "Vexon" wordmark, a centred nav row, then a
+         wide frosted-glass CTA card with the Unlock headline and a
+         solid blue Contact Us button. Below, a thin glowing divider
+         and the bottom bar: copyright left, Privacy & Policy •
+         Terms & Condition centred, blue circular glowing social
+         buttons right — X, Twitter, Facebook, Discord. Blue family only. */
+      .site-footer {
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+        padding: clamp(46px, 5.2vw, 68px) clamp(16px, 3vw, 40px) 0;
+        background:
+          radial-gradient(720px 400px at 50% -6%, rgba(45, 130, 255, 0.15), rgba(45, 130, 255, 0) 62%),
+          radial-gradient(640px 440px at 6% 64%, rgba(35, 110, 230, 0.1), rgba(35, 110, 230, 0) 64%),
+          radial-gradient(700px 480px at 95% 56%, rgba(35, 110, 230, 0.11), rgba(35, 110, 230, 0) 64%),
+          radial-gradient(580px 300px at 50% 68%, rgba(50, 140, 255, 0.09), rgba(50, 140, 255, 0) 66%),
+          #000000;
+        border-top: 1px solid rgba(255, 255, 255, 0.04);
+      }
+      .footer-smoke { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+      .footer-smoke span {
+        position: absolute; border-radius: 50%; filter: blur(36px); opacity: 0.75;
+        background: radial-gradient(50% 50% at 50% 50%, rgba(56, 140, 255, 0.32), rgba(56, 140, 255, 0) 70%);
+        animation: footerSmoke 11s ease-in-out infinite alternate;
+      }
+      .footer-smoke span:nth-child(1) { width: 44vw; height: 30vh; left: -8%; top: 46%; }
+      .footer-smoke span:nth-child(2) { width: 40vw; height: 32vh; right: -7%; top: 38%; animation-delay: -4s; }
+      .footer-smoke span:nth-child(3) { width: 30vw; height: 20vh; left: 34%; top: -6%; opacity: 0.55; animation-delay: -7s; }
+      @keyframes footerSmoke {
+        from { transform: translateX(-1.6vw) scale(1); }
+        to   { transform: translateX(1.6vw) scale(1.06); }
+      }
+      .footer-inner { position: relative; z-index: 2; max-width: 1080px; margin: 0 auto; }
+      .footer-bot {
+        display: block;
+        margin: 0 auto;
+        width: clamp(118px, 12.5vw, 162px);
+        aspect-ratio: 400 / 252;
+        object-fit: cover;
+        -webkit-mask-image: radial-gradient(80% 84% at 50% 46%, #000 56%, rgba(0, 0, 0, 0) 98%);
+        mask-image: radial-gradient(80% 84% at 50% 46%, #000 56%, rgba(0, 0, 0, 0) 98%);
+        filter: drop-shadow(0 0 26px rgba(60, 150, 255, 0.35));
+        user-select: none; -webkit-user-drag: none;
+      }
+      .footer-word {
+        margin-top: 4px;
+        font-family: "Orbitron", sans-serif;
+        font-weight: 800;
+        font-size: clamp(38px, 4.4vw, 56px);
+        line-height: 1.12;
+        letter-spacing: 0.01em;
+        color: #ffffff;
+        text-shadow: 0 0 24px rgba(90, 170, 255, 0.55), 0 0 62px rgba(60, 140, 255, 0.3);
+      }
+      .footer-nav {
+        margin-top: clamp(24px, 2.8vw, 36px);
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px clamp(30px, 4.2vw, 62px);
+      }
+      .footer-nav a {
+        font-size: clamp(16px, 1.45vw, 20px);
+        font-weight: 700;
+        color: #f2f7fd;
+        text-decoration: none;
+        transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .footer-nav a:hover, .footer-nav a:focus-visible {
+        color: #7cc2ff;
+        text-shadow: 0 0 16px rgba(90, 170, 255, 0.65);
+        transform: translateY(-2px);
+      }
+      .footer-cta {
+        position: relative;
+        overflow: hidden;
+        max-width: 980px;
+        margin: clamp(30px, 3.4vw, 44px) auto 0;
+        padding: clamp(28px, 3vw, 38px) clamp(20px, 3vw, 40px) clamp(32px, 3.4vw, 44px);
+        border-radius: 14px;
+        border: 1px solid rgba(140, 200, 255, 0.5);
+        background:
+          linear-gradient(115deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 34%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0) 42%),
+          linear-gradient(168deg, rgba(70, 110, 160, 0.34) 0%, rgba(24, 44, 74, 0.42) 52%, rgba(10, 22, 42, 0.52) 100%);
+        backdrop-filter: blur(16px) saturate(1.2);
+        -webkit-backdrop-filter: blur(16px) saturate(1.2);
+        box-shadow:
+          inset 0 1px 0 rgba(200, 232, 255, 0.28),
+          inset 0 0 34px rgba(70, 150, 255, 0.08),
+          0 0 34px rgba(45, 130, 255, 0.14),
+          0 24px 44px rgba(0, 0, 0, 0.5);
+      }
+      .footer-cta::before {
+        /* the edge light from the mockup: a bright line across the top
+           edge and vertical streaks glowing down both side edges */
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 14px;
+        background:
+          linear-gradient(90deg, rgba(110, 195, 255, 0.08) 0%, rgba(170, 222, 255, 0.75) 30%, rgba(170, 222, 255, 0.6) 62%, rgba(110, 195, 255, 0.08) 100%) top center / 100% 1px no-repeat,
+          linear-gradient(180deg, rgba(140, 205, 255, 0) 18%, rgba(150, 212, 255, 0.5) 50%, rgba(140, 205, 255, 0) 82%) left center / 7px 72% no-repeat,
+          linear-gradient(180deg, rgba(140, 205, 255, 0) 18%, rgba(150, 212, 255, 0.5) 50%, rgba(140, 205, 255, 0) 82%) right center / 7px 72% no-repeat,
+          linear-gradient(180deg, rgba(190, 228, 255, 0) 22%, rgba(190, 228, 255, 0.95) 50%, rgba(190, 228, 255, 0) 78%) left center / 2px 64% no-repeat,
+          linear-gradient(180deg, rgba(190, 228, 255, 0) 22%, rgba(190, 228, 255, 0.95) 50%, rgba(190, 228, 255, 0) 78%) right center / 2px 64% no-repeat;
+        pointer-events: none;
+      }
+      .footer-cta h2 {
+        margin: 0;
+        font-family: "Manrope", sans-serif;
+        font-weight: 800;
+        font-size: clamp(21px, 2.5vw, 31px);
+        line-height: 1.3;
+        letter-spacing: -0.01em;
+        color: #ffffff;
+        text-shadow: 0 0 18px rgba(90, 160, 255, 0.25);
+      }
+      .btn-contact {
+        margin-top: clamp(20px, 2.2vw, 27px);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 13px 47px;
+        border-radius: 9px;
+        background: linear-gradient(180deg, #4a97ff 0%, #2f7df6 55%, #2470e8 100%);
+        box-shadow:
+          0 0 26px rgba(58, 139, 255, 0.5),
+          0 14px 26px -10px rgba(36, 112, 232, 0.6),
+          inset 0 1px 0 rgba(255, 255, 255, 0.35);
+        color: #ffffff;
+        font-size: 17px;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        text-decoration: none;
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, filter 0.35s ease;
+        will-change: transform;
+      }
+      .btn-contact:hover, .btn-contact:focus-visible {
+        transform: translateY(-3px);
+        filter: brightness(1.08);
+        box-shadow:
+          0 0 36px rgba(58, 150, 255, 0.65),
+          0 20px 32px -10px rgba(36, 112, 232, 0.65),
+          inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      }
+      .btn-contact:active { transform: translateY(-1px); }
+      .footer-divider {
+        position: relative;
+        z-index: 2;
+        width: calc(100% - clamp(24px, 4vw, 56px));
+        max-width: 1560px;
+        height: 1px;
+        margin: clamp(40px, 4.5vw, 58px) auto 0;
+        background: linear-gradient(90deg, rgba(90, 170, 255, 0) 0%, rgba(120, 195, 255, 0.38) 18%, rgba(160, 218, 255, 0.8) 50%, rgba(120, 195, 255, 0.38) 82%, rgba(90, 170, 255, 0) 100%);
+        box-shadow: 0 0 14px rgba(80, 160, 255, 0.45), 0 0 36px rgba(80, 160, 255, 0.18);
+      }
+      .footer-bar {
+        position: relative;
+        z-index: 2;
+        max-width: 1560px;
+        margin: 0 auto;
+        padding: 22px clamp(4px, 1vw, 16px) 30px;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: 14px 28px;
+        text-align: left;
+      }
+      .footer-copy {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 600;
+        color: #e6eef8;
+        line-height: 1.5;
+      }
+      .footer-legal {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #e6eef8;
+        white-space: nowrap;
+      }
+      .footer-legal a { color: inherit; text-decoration: none; transition: color 0.3s ease, text-shadow 0.3s ease; }
+      .footer-legal a:hover, .footer-legal a:focus-visible { color: #7cc2ff; text-shadow: 0 0 14px rgba(90, 170, 255, 0.55); }
+      .footer-legal .dot { color: #9db8d4; font-size: 11px; }
+      .footer-socials {
+        justify-self: end;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      /* Blue circular glowing buttons, same-to-same with image-34:
+         a bright blue radial-gradient disc with a soft outer halo,
+         a glossy top highlight and the white brand glyph centred in
+         it — X, Twitter, Facebook, Discord, in that order. */
+      .footer-socials a {
+        width: 40px;
+        height: 40px;
+        flex: none;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        background:
+          radial-gradient(120% 120% at 32% 26%, #79c2ff 0%, #3d9bff 42%, #2b78f6 72%, #1e5fd6 100%);
+        border: 1px solid rgba(150, 205, 255, 0.55);
+        box-shadow:
+          0 0 14px rgba(59, 140, 255, 0.6),
+          0 0 30px rgba(59, 140, 255, 0.28),
+          inset 0 1px 1px rgba(255, 255, 255, 0.45),
+          inset 0 -6px 12px rgba(10, 50, 140, 0.35);
+        transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, filter 0.3s ease;
+      }
+      .footer-socials a svg { display: block; }
+      .footer-socials a.fs-x svg { width: 16px; height: 16px; }
+      .footer-socials a.fs-tw svg { width: 19px; height: 19px; }
+      .footer-socials a.fs-fb svg { width: 12px; height: 19px; }
+      .footer-socials a.fs-dc svg { width: 21px; height: 21px; }
+      .footer-socials a:hover, .footer-socials a:focus-visible {
+        transform: translateY(-3px);
+        filter: brightness(1.1);
+        box-shadow:
+          0 0 20px rgba(80, 160, 255, 0.8),
+          0 0 42px rgba(59, 140, 255, 0.4),
+          inset 0 1px 1px rgba(255, 255, 255, 0.5),
+          inset 0 -6px 12px rgba(10, 50, 140, 0.3);
+      }
+      @media (max-width: 900px) {
+        .footer-bar { grid-template-columns: 1fr; justify-items: center; text-align: center; padding-bottom: 34px; }
+        .footer-socials { justify-self: center; }
+        .footer-legal { flex-wrap: wrap; white-space: normal; }
+      }
+      @media (max-width: 520px) {
+        .site-footer { padding-left: 12px; padding-right: 12px; }
+        .footer-nav { gap: 12px 24px; }
+        .footer-nav a { font-size: 16px; }
+        .footer-cta { padding-left: 16px; padding-right: 16px; }
+        .btn-contact { width: 100%; max-width: 300px; }
+        .footer-copy, .footer-legal { font-size: 13.5px; }
+        .footer-socials { gap: 10px; }
+        .footer-socials a { width: 36px; height: 36px; }
+        .footer-socials a.fs-x svg { width: 15px; height: 15px; }
+        .footer-socials a.fs-tw svg { width: 17px; height: 17px; }
+        .footer-socials a.fs-fb svg { width: 11px; height: 17px; }
+        .footer-socials a.fs-dc svg { width: 19px; height: 19px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .footer-smoke span { animation: none !important; }
+      }
+
+      /* ---------- Responsive ---------- */
+      @media (max-width: 1080px) {
+        .cards { grid-template-columns: repeat(2, 1fr); }
+        .card h3 { white-space: normal; }
+      }
+      @media (max-width: 560px) {
+        .cards { grid-template-columns: 1fr; }
+        .card { padding: 22px 18px 24px; }
+        .why { padding-left: 18px; padding-right: 18px; }
+        /* On the tall stacked layout, percentage-placed sparkles land
+           mid-text — pin two to the section corners, hide the rest. */
+        .spark { display: none; }
+        .spark:nth-of-type(1) { display: block; top: 34px !important; left: 18px !important; }
+        .spark:nth-of-type(4) { display: block; top: auto !important; bottom: 42px !important; right: 16px !important; }
+      }
+    
+      /* ================= NAVBAR + HERO (final approved builds) ================= */
+
+            button { font: inherit; cursor: pointer; }
+      a { color: inherit; }
+      :focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; border-radius: 6px; }
+
+      /* ================= FINAL NAVBAR · MINIMAL + MEGA MENU ================= */
+      .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; flex: none; }
+      .brand-icon { display: inline-flex; line-height: 0; }
+      .brand-icon svg { display: block; }
+      .brand-word { font-family: "Orbitron", sans-serif; font-weight: 800; font-size: 18px; letter-spacing: 0.14em; color: var(--ink); line-height: 1; display: flex; flex-direction: column; gap: 4px; }
+      .brand-word small { display: none; }
+      .icon-btn {
+        width: 42px; height: 42px; border-radius: 12px; border: 1px solid transparent;
+        background: transparent; color: var(--ink); display: inline-flex; align-items: center; justify-content: center;
+        transition: color .2s, border-color .2s, background .2s; flex: none;
+      }
+      .icon-btn:hover { color: var(--teal); border-color: rgba(20,224,200,.35); background: rgba(20,224,200,.06); }
+      .icon-btn svg { width: 20px; height: 20px; }
+      .btn-quote {
+        font-family: "Manrope", sans-serif; font-weight: 800; font-size: 13px; letter-spacing: .02em;
+        color: #03222b; background: var(--grad); border: 0; border-radius: 999px; padding: 10px 18px;
+        box-shadow: 0 10px 26px -10px rgba(20,224,200,.65);
+        transition: transform .2s, box-shadow .2s; white-space: nowrap;
+      }
+      .btn-quote:hover { transform: translateY(-1px); box-shadow: 0 14px 30px -10px rgba(20,224,200,.8); }
+      .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; margin: 0; padding: 0; }
+      .nav-links > li { position: relative; }
+      .nav-links a.nl {
+        font-weight: 700; font-size: 12.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
+        text-decoration: none; padding: 10px 12px; display: inline-flex; align-items: center; gap: 6px;
+        position: relative; transition: color .2s; border-radius: 8px;
+      }
+      .nav-links a.nl:hover, .nav-links a.nl.on { color: var(--teal); }
+      .nav-links a.nl .chev { width: 13px; height: 13px; opacity: .7; transition: transform .25s; display: inline-flex; }
+      .has-mega:hover .chev, .has-mega.open .chev { transform: rotate(180deg); }
+      .nav-actions { display: flex; align-items: center; gap: 8px; flex: none; }
+
+      .nav-min {
+        position: sticky; top: 0; z-index: 60;
+        background: rgba(4, 12, 24, 0.86);
+        backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(120, 200, 235, 0.12);
+      }
+      .nav-min .bar {
+        max-width: 1280px; margin: 0 auto; padding: 0 28px; height: 66px;
+        display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; position: relative;
+      }
+      .nav-min .brand { justify-self: start; }
+      .nav-min .nav-links { justify-self: center; }
+      .nav-min .nav-actions { justify-self: end; }
+      .nav-min .has-mega { position: static; }
+      /* Robox-style right cluster: perfect round glowing search + divider + hamburger */
+      .nav-min .search-circle {
+        width: 44px; height: 44px; aspect-ratio: 1 / 1; border-radius: 50%; padding: 0; flex: none;
+        display: inline-flex; align-items: center; justify-content: center;
+        background: radial-gradient(circle at 50% 35%, rgba(20,224,200,.3), rgba(8,32,44,.95) 76%);
+        border: 1px solid rgba(20,224,200,.45);
+        box-shadow: 0 0 16px -6px rgba(20,224,200,.55), inset 0 1px 0 rgba(255,255,255,.12);
+        color: #eafffb;
+      }
+      .nav-min .search-circle [data-icon] { display: inline-flex; align-items: center; justify-content: center; line-height: 0; }
+      .nav-min .search-circle [data-icon] svg { width: 19px; height: 19px; display: block; }
+      .nav-div { width: 1px; height: 26px; background: rgba(140,210,240,.28); margin: 0 2px; flex: none; }
+
+      .mega {
+        position: absolute; top: 100%; left: 28px; right: 28px; z-index: 55;
+        background: linear-gradient(180deg, #0c1e3a, #081630);
+        border: 1px solid rgba(120,200,235,.2); border-top: 2px solid rgba(20,224,200,.55);
+        border-radius: 0 0 18px 18px; padding: 22px;
+        display: none;
+        box-shadow: 0 34px 60px -24px rgba(0,0,0,.85);
+      }
+      .has-mega.open .mega, .has-mega:hover .mega { display: block; animation: megaIn .25s ease; }
+      @keyframes megaIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+      .mega-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .mega a {
+        display: flex; gap: 13px; padding: 13px; border-radius: 12px; text-decoration: none;
+        transition: background .18s; align-items: flex-start;
+      }
+      .mega a:hover { background: rgba(20,224,200,.08); }
+      .mega .mi {
+        width: 40px; height: 40px; flex: none; border-radius: 11px; display: flex; align-items: center; justify-content: center;
+        background: rgba(20,224,200,.1); border: 1px solid rgba(20,224,200,.3); color: var(--teal);
+      }
+      .mega .mi svg { width: 20px; height: 20px; }
+      .mega b { display: block; font-size: 15px; color: #fff; margin-bottom: 3px; }
+      .mega span { display: block; font-size: 13px; line-height: 1.5; color: var(--muted); font-weight: 500; }
+      .mega-foot {
+        display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between;
+        border-top: 1px solid var(--line); margin-top: 14px; padding-top: 15px;
+        font-size: 13.5px; color: var(--muted);
+      }
+      .mega-foot a { display: inline-flex; padding: 0; color: var(--teal); font-weight: 800; }
+      .mega-foot a:hover { background: none; text-decoration: underline; }
+
+      /* ---------- Overlays: side panel + search ---------- */
+      .scrim {
+        position: fixed; inset: 0; z-index: 90; background: rgba(3, 8, 18, 0.62); backdrop-filter: blur(3px);
+        opacity: 0; pointer-events: none; transition: opacity .3s;
+      }
+      body.ui-open .scrim { opacity: 1; pointer-events: auto; }
+      .m-panel {
+        position: fixed; top: 0; right: 0; bottom: 0; z-index: 95; width: min(320px, 88vw);
+        background: linear-gradient(200deg, #0c1e3a, #060f1f); border-left: 1px solid rgba(20,224,200,.3);
+        transform: translateX(105%); transition: transform .38s cubic-bezier(.22,.9,.3,1);
+        display: none; flex-direction: column; padding: 20px; overflow-y: auto;
+        box-shadow: -30px 0 60px rgba(0,0,0,.5);
+      }
+      .m-panel.prep, body.show-panel .m-panel { display: flex; }
+      body.show-panel .m-panel { transform: translateX(0); }
+      .m-panel .p-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+      .m-panel nav { display: flex; flex-direction: column; }
+      .m-panel nav a {
+        font-weight: 700; font-size: 16.5px; color: #d7e6f7; text-decoration: none;
+        padding: 13px 6px; border-bottom: 1px solid rgba(120,200,235,.1); display: flex; justify-content: space-between; align-items: center;
+      }
+      .m-panel nav a:hover { color: var(--teal); }
+      .m-panel nav a [data-icon="chev"] { width: 18px; height: 18px; flex: none; display: inline-flex; }
+      .m-panel .p-sub { padding: 4px 6px 10px; display: none; flex-direction: column; }
+      .m-panel .p-sub.open { display: flex; }
+      .m-panel .p-sub a { font-size: 14.5px; font-weight: 600; color: var(--muted); border-bottom: 0; padding: 8px 6px; }
+      .m-panel .p-foot { margin-top: auto; padding-top: 20px; }
+      .m-panel .p-foot .btn-quote { width: 100%; font-size: 14px; padding: 12px 22px; }
+      .m-panel .p-meta { margin-top: 16px; font-size: 13px; color: var(--muted); line-height: 1.7; text-align: center; }
+
+      .search-ui {
+        position: fixed; inset: 0; z-index: 96; background: rgba(4, 10, 22, 0.92); backdrop-filter: blur(10px);
+        display: none; flex-direction: column; align-items: center; padding: 24px; overflow-y: auto;
+      }
+      body.show-search .search-ui { display: flex; animation: fadeIn .28s ease; }
+      @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+      .search-ui .s-close { position: absolute; top: 14px; right: 14px; }
+      .search-box { width: min(540px, 100%); margin: auto; }
+      .search-box label { display: block; text-align: center; font-family: "Orbitron", sans-serif; font-size: 11px; letter-spacing: .3em; color: var(--teal); font-weight: 700; margin-bottom: 16px; }
+      .s-bar {
+        display: flex; align-items: center; gap: 10px;
+        background: #0c1e38; border: 1.5px solid rgba(120, 200, 235, .35); border-radius: 999px;
+        padding: 6px 6px 6px 18px; box-shadow: 0 24px 48px -20px rgba(0,0,0,.85);
+        transition: border-color .2s, box-shadow .2s;
+      }
+      .s-bar:focus-within { border-color: rgba(20,224,200,.85); box-shadow: 0 0 0 4px rgba(20,224,200,.14), 0 24px 48px -20px rgba(0,0,0,.85); }
+      .s-bar > span { display: inline-flex; color: var(--teal); flex: none; }
+      .s-bar > span svg { width: 20px; height: 20px; }
+      .s-bar input {
+        flex: 1; background: transparent; border: 0; outline: none; color: #fff; min-width: 0; height: 40px;
+        font-size: 16.5px; font-weight: 600;
+      }
+      .s-bar input::placeholder { color: #6d87a5; font-weight: 500; }
+      .s-go {
+        flex: none; border: 0; border-radius: 999px; height: 40px; padding: 0 22px;
+        background: var(--grad); color: #03222b; font-weight: 800; font-size: 14.5px;
+        box-shadow: 0 8px 20px -8px rgba(20,224,200,.7); transition: transform .18s;
+      }
+      .s-go:hover { transform: translateY(-1px); }
+      .s-results {
+        margin-top: 14px; display: flex; flex-direction: column; gap: 2px;
+        background: rgba(10, 24, 46, .88); border: 1px solid var(--line); border-radius: 16px;
+        padding: 6px; max-height: 264px; overflow-y: auto;
+      }
+      .s-results button {
+        width: 100%; text-align: left; background: transparent; border: 0; color: #d7e6f7;
+        border-radius: 10px; padding: 11px 14px; font-weight: 700; font-size: 15px;
+        display: flex; align-items: baseline; gap: 9px; transition: background .18s, color .18s; cursor: pointer;
+      }
+      .s-results button:hover { background: rgba(20,224,200,.1); color: #fff; }
+      .s-results button span { color: var(--muted); font-weight: 500; font-size: 13px; }
+      .s-empty { color: var(--muted); font-size: 14.5px; padding: 16px 10px; margin: 0; text-align: center; font-family: "Hind Siliguri", "Manrope", sans-serif; }
+
+      .toast {
+        position: fixed; left: 50%; bottom: 18px; transform: translate(-50%, 16px); z-index: 99;
+        background: #0b1e3c; border: 1px solid rgba(20,224,200,.5); color: var(--ink);
+        padding: 11px 18px; border-radius: 999px; font-size: 14px; font-weight: 600;
+        font-family: "Hind Siliguri", "Manrope", sans-serif;
+        box-shadow: 0 18px 40px -12px rgba(0,0,0,.8); opacity: 0; pointer-events: none; transition: opacity .3s, transform .3s;
+        max-width: calc(100vw - 32px); text-align: center;
+      }
+      .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+      /* ================= HERO ================= */
+      .hero {
+        position: relative;
+        min-height: calc(100svh - 66px);
+        display: flex; align-items: center;
+        overflow: hidden;
+        isolation: isolate;
+        background:
+          radial-gradient(1100px 600px at 78% 30%, rgba(20, 160, 190, 0.16), transparent 62%),
+          linear-gradient(180deg, #04101f 0%, #030b16 100%);
+      }
+      /* Layer 1 — nebula: the picture itself NEVER moves or slides.
+         It stays fixed in one place; only soft smoke wisps drift through
+         it rightward and fade, so the scene feels like flowing water. */
+      .layer-nebula { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+      .nebula-base { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 50%; display: block; }
+      /* Flowing blue smoke — the nebula picture itself stays fixed in one
+         place; these endless smoke currents run through it like water.
+         Each sheet is one repeating tile of soft blue puffs whose
+         background-position slides by exactly one tile width, so the flow
+         is continuous and seamless and never shifts the scene. Two sheets
+         run at different depths/speeds, a third hugs the floor, and a slow
+         vertical sway makes the current undulate like a stream. */
+      .smoke-sheet {
+        position: absolute; left: -4%; right: -4%; pointer-events: none;
+        background-repeat: repeat-x; will-change: background-position, transform;
+        animation: smokeFlow var(--sd, 40s) linear infinite, smokeSway var(--sw, 9s) ease-in-out infinite alternate;
+      }
+      .smoke-sheet.s-back {
+        top: 0; height: 58%; filter: blur(22px); opacity: 0.85; --tile: 64vw; --sd: 52s; --sw: 11s;
+        background-size: 64vw 100%;
+        background-image:
+          radial-gradient(36% 60% at 16% 58%, rgba(58, 165, 255, 0.4), rgba(58, 165, 255, 0) 70%),
+          radial-gradient(28% 52% at 52% 38%, rgba(56, 205, 235, 0.32), rgba(56, 205, 235, 0) 70%),
+          radial-gradient(32% 58% at 83% 62%, rgba(84, 148, 255, 0.36), rgba(84, 148, 255, 0) 70%);
+      }
+      .smoke-sheet.s-mid {
+        top: 26%; height: 52%; filter: blur(15px); opacity: 0.95; --tile: 46vw; --sd: 34s; --sw: 8s;
+        background-size: 46vw 100%;
+        background-image:
+          radial-gradient(34% 58% at 22% 46%, rgba(96, 205, 255, 0.42), rgba(96, 205, 255, 0) 70%),
+          radial-gradient(26% 50% at 58% 62%, rgba(64, 160, 255, 0.38), rgba(64, 160, 255, 0) 70%),
+          radial-gradient(30% 54% at 88% 42%, rgba(56, 220, 235, 0.3), rgba(56, 220, 235, 0) 70%);
+      }
+      .smoke-sheet.s-low {
+        top: 58%; height: 44%; filter: blur(17px); opacity: 0.8; --tile: 54vw; --sd: 43s; --sw: 10s;
+        background-size: 54vw 100%;
+        background-image:
+          radial-gradient(38% 62% at 26% 55%, rgba(50, 150, 250, 0.34), rgba(50, 150, 250, 0) 70%),
+          radial-gradient(30% 55% at 68% 45%, rgba(70, 190, 245, 0.3), rgba(70, 190, 245, 0) 70%);
+      }
+      @keyframes smokeFlow {
+        from { background-position-x: 0, 0, 0; }
+        to   { background-position-x: var(--tile), var(--tile), var(--tile); }
+      }
+      @keyframes smokeSway {
+        from { transform: translateY(-1.4vh); }
+        to   { transform: translateY(1.4vh); }
+      }
+      /* Individual smoke wisps riding the current: they stream rightward
+         through the fixed picture, rising and dipping like water, fading
+         in and out so the flow never ends and nothing ever relocates. */
+      .wisp {
+        position: absolute; border-radius: 50%; pointer-events: none; opacity: 0;
+        filter: blur(24px); will-change: transform, opacity;
+        background: radial-gradient(50% 50% at 50% 50%, rgba(56, 205, 235, 0.62), rgba(56, 205, 235, 0) 70%);
+        animation: wispFlow var(--d, 26s) linear infinite; animation-delay: var(--dl, 0s);
+      }
+      .wisp.w-blue { background: radial-gradient(50% 50% at 50% 50%, rgba(70, 155, 255, 0.55), rgba(70, 155, 255, 0) 70%); }
+      @keyframes wispFlow {
+        0%   { transform: translateX(-16vw) translateY(0) scale(1); opacity: 0; }
+        12%  { opacity: 0.78; }
+        34%  { transform: translateX(6vw) translateY(-2.6vh) scale(1.06); opacity: 0.6; }
+        58%  { transform: translateX(26vw) translateY(2vh) scale(1.12); opacity: 0.72; }
+        82%  { transform: translateX(42vw) translateY(-1.6vh) scale(1.18); opacity: 0.55; }
+        100% { transform: translateX(56vw) translateY(0.6vh) scale(1.24); opacity: 0; }
+      }
+      /* Layer 2 — particle canvas (particles drift LEFT forever, in the script) */
+      .layer-particles { position: absolute; inset: 0; z-index: 1; }
+      .layer-particles canvas { width: 100%; height: 100%; display: block; }
+      /* Soft vignette so copy stays readable */
+      .hero-veil {
+        position: absolute; inset: 0; z-index: 2; pointer-events: none;
+        background: linear-gradient(90deg, rgba(3, 10, 20, 0.55) 0%, rgba(3, 10, 20, 0.12) 42%, rgba(3, 10, 20, 0) 62%),
+                    linear-gradient(0deg, rgba(3, 10, 20, 0.5) 0%, rgba(3, 10, 20, 0) 26%);
+      }
+
+      .hero-inner {
+        position: relative; z-index: 3;
+        width: 100%; max-width: 1280px; margin: 0 auto;
+        padding: 34px 40px 44px;
+        display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+        align-items: center; gap: 12px;
+      }
+      .hero-copy { max-width: 600px; }
+      .hero-copy h1 {
+        font-family: "Orbitron", sans-serif; font-weight: 800;
+        font-size: clamp(38px, 4.4vw, 62px); line-height: 1.16; letter-spacing: 0.01em;
+        margin: 0 0 30px; color: #fff;
+      }
+      .hero-copy h1 .accent {
+        background: linear-gradient(92deg, #2ee6cf, #25b6f2);
+        -webkit-background-clip: text; background-clip: text; color: transparent;
+      }
+      .hero-cta { display: flex; align-items: center; gap: 34px; flex-wrap: wrap; }
+      .btn-explore {
+        font-family: "Orbitron", sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.04em;
+        color: #eafffb; text-decoration: none;
+        padding: 15px 34px; border-radius: 999px;
+        background: linear-gradient(180deg, rgba(20,224,200,.32), rgba(10,110,140,.34));
+        border: 1px solid rgba(45, 240, 214, 0.65);
+        box-shadow: 0 0 26px -6px rgba(20,224,200,.55), inset 0 1px 0 rgba(255,255,255,.18);
+        transition: transform .22s, box-shadow .22s;
+        display: inline-flex; align-items: center; gap: 10px;
+      }
+      .btn-explore:hover { transform: translateY(-2px); box-shadow: 0 6px 34px -6px rgba(20,224,200,.75), inset 0 1px 0 rgba(255,255,255,.22); }
+      .btn-explore svg { width: 16px; height: 16px; }
+      .stat .stat-num { font-family: "Orbitron", sans-serif; font-weight: 800; font-size: 30px; color: #fff; line-height: 1; display: flex; align-items: baseline; gap: 6px; }
+      .stat .stat-num .plus { color: var(--teal); font-size: 22px; }
+      .stat .stat-label { color: var(--muted); font-size: 14.5px; margin-top: 6px; font-weight: 500; }
+
+      /* Robot stage — the robot stays FIXED in its place: no sliding, no
+         bobbing, no mouse movement. In place, its head and whole body spin
+         a full 360° together; the spins repeat with alternating gaps —
+         one after 3s, the next after 4s, then 3s, then 4s, forever. */
+      .robot-stage { position: relative; display: flex; align-items: center; justify-content: center; perspective: 1000px; min-height: 0; }
+      .robot-float { position: relative; }
+      .robot-figure { position: relative; height: min(62vh, 580px); aspect-ratio: 593 / 731; margin: 0 auto; perspective: 900px; }
+      .robot-layer { position: absolute; inset: 0; will-change: transform; }
+      .robot-layer img {
+        display: block; width: 100%; height: 100%;
+        filter: drop-shadow(0 22px 26px rgba(0, 0, 0, 0.38));
+        user-select: none; -webkit-user-drag: none;
+      }
+      /* Spin cycle = 7s. Head + body turn together, in place: spin
+         0–1.5s, hold, spin again at 3–4.5s (3s after the first), hold to
+         7s (4s gap), repeat. 720deg at the loop point is the same pose as
+         0deg, so the loop is seamless. React Three Fiber drives the
+         real 3D meshes on this same cycle (assets/r3f-bundle.js); the
+         CSS animation below is only the fallback until R3F is ready. */
+      .robot-body-layer { z-index: 1; transform-origin: 50% 50%; animation: robotSpin 7s ease-in-out infinite; }
+      .robot-head-layer { z-index: 2; transform-origin: 50% 50%; animation: robotSpin 7s ease-in-out infinite; }
+      @keyframes robotSpin {
+        0%    { transform: rotateY(0deg); }
+        21.4% { transform: rotateY(360deg); }
+        42.9% { transform: rotateY(360deg); }
+        64.3% { transform: rotateY(720deg); }
+        100%  { transform: rotateY(720deg); }
+      }
+      /* The React Three Fiber canvas takes over the figure once live */
+      #robotGL { position: absolute; inset: 0; width: 100%; height: 100%; display: none; z-index: 1; }
+      #robotGL canvas { display: block; }
+      .robot-figure.gl-on #robotGL { display: block; }
+      .robot-figure.gl-on .robot-layer { display: none; }
+      /* NO added booster hardware — the extra nozzle is gone. The robot
+         artwork itself has a round engine disc at the bottom centre of
+         the body (about 97% down the figure); the big pale-blue boost
+         glow pours straight out of that disc, nothing bolted on. */
+      .engine-boost { position: absolute; left: 50%; top: 96.4%; width: 17%; height: 0; transform: translateX(-50%); z-index: 3; pointer-events: none; }
+      .engine-boost .flame {
+        position: absolute; left: 50%; top: 0; width: 215%; z-index: 1;
+        transform: translateX(-50%);
+        animation: flamePulse 1.6s ease-in-out infinite alternate;
+      }
+      .engine-boost .flame svg { display: block; width: 100%; height: auto; overflow: visible; filter: blur(2.5px); position: relative; z-index: 1; }
+      .flame-inner { transform-origin: 50% 0%; animation: flameFlicker 0.18s ease-in-out infinite alternate; }
+      @keyframes flameFlicker {
+        from { transform: scaleY(0.95) scaleX(1.03); }
+        to   { transform: scaleY(1.05) scaleX(0.97); }
+      }
+      @keyframes flamePulse {
+        from { opacity: 0.9; }
+        to   { opacity: 1; }
+      }
+      .flame-aura {
+        position: absolute; left: 50%; top: 44%; width: 165%; height: 64%; z-index: 0;
+        background: radial-gradient(50% 50% at 50% 50%, rgba(150, 220, 255, 0.5), rgba(110, 200, 255, 0.16) 55%, rgba(110, 200, 255, 0) 75%);
+        filter: blur(12px); animation: auraPulse 1.6s ease-in-out infinite alternate; pointer-events: none;
+      }
+      @keyframes auraPulse {
+        from { opacity: 0.65; transform: translate(-50%, -50%) scale(0.94); }
+        to   { opacity: 1; transform: translate(-50%, -50%) scale(1.06); }
+      }
+      .engine-glow {
+        position: absolute; left: 50%; top: 124%; width: 52%; height: 52px; transform: translateX(-50%); z-index: 0;
+        background: radial-gradient(50% 50% at 50% 50%, rgba(140, 220, 255, 0.55), rgba(140, 220, 255, 0) 70%);
+        filter: blur(10px); animation: glowPulse 1.6s ease-in-out infinite alternate; pointer-events: none;
+      }
+      .robot-glow {
+        position: absolute; left: 50%; top: 103%; width: 62%; height: 44px; transform: translateX(-50%); z-index: 0;
+        background: radial-gradient(50% 50% at 50% 50%, rgba(38, 200, 235, 0.42), rgba(38, 200, 235, 0) 70%);
+        filter: blur(6px); animation: glowPulse 6s ease-in-out infinite alternate; pointer-events: none;
+      }
+      @keyframes glowPulse {
+        from { opacity: 0.55; transform: translateX(-50%) scaleX(0.88); }
+        to   { opacity: 1; transform: translateX(-50%) scaleX(1.05); }
+      }
+      .robot-halo {
+        position: absolute; left: 50%; top: 46%; width: 118%; aspect-ratio: 1; transform: translate(-50%, -50%); z-index: 0;
+        background: radial-gradient(50% 50% at 50% 50%, rgba(20, 224, 200, 0.13), rgba(20, 224, 200, 0) 68%);
+        pointer-events: none;
+      }
+
+      /* ---------- Navbar + hero on smaller screens ---------- */
+      @media (max-width: 880px) {
+        .nav-links, .nav-min .search-circle, .nav-min .nav-div { display: none !important; }
+        .mega { display: none !important; }
+        /* Mobile navbar — exactly like the Robox reference photo:
+           Vexon logo left, only a teal rounded-square hamburger on the right */
+        .nav-min { background: linear-gradient(92deg, #04141f 0%, #06222f 58%, #0a3442 100%); }
+        .nav-min .bar { display: flex; justify-content: space-between; height: 74px; padding: 0 18px; gap: 12px; }
+        .nav-min .brand-icon svg { width: 44px; height: 44px; }
+        .nav-min .brand-word { font-size: 21px; letter-spacing: 0.12em; }
+        .nav-min .nav-actions { gap: 0; margin-left: auto; }
+        .nav-min .burger {
+          width: 54px; height: 47px; border-radius: 10px; padding: 0;
+          display: inline-flex; align-items: center; justify-content: center;
+          background: linear-gradient(180deg, #1d8d94 0%, #0e6272 100%);
+          border: 1px solid rgba(94, 234, 222, 0.28);
+          box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 8px 18px -8px rgba(0,0,0,.65);
+          color: #ffffff;
+        }
+        .nav-min .burger:hover { color: #ffffff; border-color: rgba(94, 234, 222, 0.45); background: linear-gradient(180deg, #229aa2 0%, #11707f 100%); }
+        .nav-min .burger [data-icon] { display: inline-flex; align-items: center; justify-content: center; line-height: 0; }
+        .nav-min .burger [data-icon] svg { width: 23px; height: 23px; display: block; }
+
+        .hero { min-height: calc(100svh - 74px); align-items: flex-start; }
+        .hero-inner { grid-template-columns: 1fr; padding: 30px 22px 36px; gap: 6px; text-align: center; }
+        .hero-copy { max-width: 560px; margin: 0 auto; }
+        .hero-copy h1 { font-size: clamp(31px, 8.6vw, 42px); margin-bottom: 22px; }
+        .hero-cta { justify-content: center; gap: 22px; }
+        .robot-figure { height: min(42vh, 380px); }
+        .hero-veil { background: linear-gradient(0deg, rgba(3, 10, 20, 0.45) 0%, rgba(3, 10, 20, 0) 30%); }
+      }
+      @media (max-width: 520px) {
+        .mega-grid { grid-template-columns: 1fr; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .wisp, .smoke-sheet, .robot-glow, .robot-body-layer, .robot-head-layer,
+        .engine-boost .flame, .flame-inner, .flame-aura, .engine-glow { animation: none !important; }
+        * { transition: none !important; }
+      }
+
+      /* ---------- Enhanced whole-site responsiveness (no design change) ----------
+         Same look at every width, just tighter, safer reflow: nothing
+         overflows sideways, grids wrap/stack cleanly, and touch targets
+         stay comfortable on phones and tablets. */
+      img, video, canvas { max-width: 100%; }
+      .why-inner, .services-inner, .projects-panel, .hero-inner, .nav-min .bar { width: 100%; }
+      @media (max-width: 1100px) {
+        .nav-min .bar { padding-left: 20px; padding-right: 20px; }
+        .hero-inner { padding-left: 28px; padding-right: 28px; }
+      }
+      @media (max-width: 1024px) {
+        .why { padding-left: 20px; padding-right: 20px; }
+        .projects-panel { padding-left: 22px; padding-right: 22px; }
+      }
+      @media (max-width: 768px) {
+        .why { padding-top: 44px; padding-bottom: 48px; }
+        .why-divider { margin-top: 44px; }
+        .trusted { margin-top: 44px; }
+        .projects { padding: 14px 10px 18px; }
+        .proj-grid { gap: 18px; }
+        .hero-inner { padding: 26px 18px 32px; }
+        .nav-min .bar { padding-left: 14px; padding-right: 14px; }
+      }
+      @media (max-width: 480px) {
+        body { overflow-x: hidden; }
+        .why { padding: 36px 14px 42px; }
+        .cards { gap: 10px; }
+        .card { padding: 18px 16px 20px; }
+        .hero-copy h1 { line-height: 1.2; }
+        .hero-cta { flex-direction: column; align-items: center; gap: 16px; }
+        .btn-explore { width: 100%; max-width: 320px; justify-content: center; }
+        .projects-panel h2 { font-size: 21px; }
+        .proj-info { padding: 14px 14px 16px; }
+        .btn-all-projects { width: 100%; max-width: 320px; }
+        .m-panel { width: min(300px, 92vw); }
+        .search-box { width: 100%; }
+        .s-bar { flex-wrap: nowrap; }
+      }
+      @media (max-width: 360px) {
+        .brand-word { font-size: 15px !important; }
+        .tstats { grid-template-columns: 1fr; }
+        .tstat:last-child { grid-column: auto; }
+        .tstat { aspect-ratio: auto; min-height: 76px; }
+      }
